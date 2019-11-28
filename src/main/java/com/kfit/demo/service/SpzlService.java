@@ -25,6 +25,12 @@ public class SpzlService {
 	public List<Spb> getspb() {
 		return spzlMappper.getspb();
 	}
+	public List<Spbnew> getspbnew() {
+		return spzlMappper.getspbnew();
+	}
+	public List<Spbnew> getspbnewymd() {
+		return spzlMappper.getspbnewymd();
+	}
 	public List<kcb> getkcb() {
 		return spzlMappper.getkcb();
 	}

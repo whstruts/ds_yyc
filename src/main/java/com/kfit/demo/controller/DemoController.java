@@ -78,6 +78,26 @@ public class DemoController {
 		//	PageHelper.startPage(1, 2);
 		return spzlService.getspb();
 	}
+	@RequestMapping("/getspbnew")
+	public List<Spbnew> getspbnew() {
+		/*
+		 * 第一个参数：第几页;
+		 * 第二个参数：每页获取的条数.
+		 */
+		//	PageHelper.startPage(1, 2);
+		return spzlService.getspbnew();
+	}
+
+	@RequestMapping("/getspbnewymd")
+	public List<Spbnew> getspbnewymd() {
+		/*
+		 * 第一个参数：第几页;
+		 * 第二个参数：每页获取的条数.
+		 */
+		//	PageHelper.startPage(1, 2);
+		return spzlService.getspbnewymd();
+	}
+
 	@RequestMapping("/getkhb")
 	public List<Khzl> getkhb() {
 		/*
