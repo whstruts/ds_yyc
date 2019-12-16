@@ -1,6 +1,62 @@
 package com.kfit.demo.bean;
 
 public class Spbnew {
+    private String ypdm;
+    private String cddm;
+    private String jx;
+
+    public String getYpdm() {
+        return ypdm;
+    }
+
+    public void setYpdm(String ypdm) {
+        this.ypdm = ypdm;
+    }
+
+    public String getCddm() {
+        return cddm;
+    }
+
+    public void setCddm(String cddm) {
+        this.cddm = cddm;
+    }
+
+    public String getJx() {
+        return jx;
+    }
+
+    public void setJx(String jx) {
+        this.jx = jx;
+    }
+
+    public String getScrq() {
+        return scrq;
+    }
+
+    public void setScrq(String scrq) {
+        this.scrq = scrq;
+    }
+
+    public String getTxm() {
+        return txm;
+    }
+
+    public void setTxm(String txm) {
+        this.txm = txm;
+    }
+
+    public String getGoods_id_s() {
+        return goods_id_s;
+    }
+
+    public void setGoods_id_s(String goods_id_s) {
+        this.goods_id_s = goods_id_s;
+    }
+
+    private String scrq;
+    private String txm;
+    private String goods_id_s;
+
     public String getDrug_common_name() {
         return drug_common_name;
     }
