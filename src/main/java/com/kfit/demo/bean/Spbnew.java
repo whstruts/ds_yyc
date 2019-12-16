@@ -1,6 +1,15 @@
 package com.kfit.demo.bean;
 
 public class Spbnew {
+    public String getGoods_sn() {
+        return goods_sn;
+    }
+
+    public void setGoods_sn(String goods_sn) {
+        this.goods_sn = goods_sn;
+    }
+
+    private String goods_sn;
     private String ypdm;
     private String cddm;
     private String jx;

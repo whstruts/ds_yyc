@@ -27,7 +27,7 @@ public interface SpzlMapper {
 			"and goods_sn like 'HYYP%' and bz > zbz and shop_price > 0 " )
 	public List<Spb> getspb();
 
-	@Select("select ypdm,cddm,jx,scrq,txm,goods_id_s," +
+	@Select("select ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn," +
 			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"'' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
 			"'' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_img as drug_img," +
@@ -41,7 +41,7 @@ public interface SpzlMapper {
 			"and goods_sn like 'HYYP%' and bz > zbz and shop_price > 0 " )
 	public List<Spbnew> getspbnew();
 
-	@Select("select goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
+	@Select("select goods_sn,goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"'' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
 			"'' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_img as drug_img," +
 			"gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
