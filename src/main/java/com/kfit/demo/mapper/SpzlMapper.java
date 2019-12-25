@@ -27,18 +27,19 @@ public interface SpzlMapper {
 			"and goods_sn like 'HYYP%' and bz > zbz and shop_price > 0 " )
 	public List<Spb> getspb();
 
-	@Select("select ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn," +
+	@Select("select ypdm,cddm,jx,scrq,txm,case when isnull(goods_id_s) then goods_sn else goods_id_s end as goods_id_s,goods_sn," +
 			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"'' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
-			"'' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_img as drug_img," +
+			"'' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand, "+
+			"case when goods_sn like 'YMD%' or goods_sn like 'MDY%' then CONCAT('http://www.ymdb2b.com/',goods_img) else goods_img end as drug_img," +
 			"gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
 			"'' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"goods_number as repertory,'' as supplier,'' as left_view,'' as right_view,txm as bar_code," +
 			"'' as unpack_view,'' as specification_view, " +
 			"shop_price as supplier_price,goods_id_s as drugid from yzy_goods " +
 			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
-			"and  (ISRETAIL = 1 and goods_number+1 > bz * 1.5) " +
-			"and goods_sn like 'HYYP%' and bz > zbz and shop_price > 0 " )
+			"and  (((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
+			"and goods_sn like 'HYYP%' or goods_sn like 'YMD%' or goods_sn like 'MDY%') and bz > zbz and shop_price > 0 " )
 	public List<Spbnew> getspbnew();
 
 	@Select("select goods_sn,goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
