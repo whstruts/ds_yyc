@@ -36,7 +36,7 @@ public interface SpzlMapper {
 			"'' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"goods_number as repertory,'' as supplier,'' as left_view,'' as right_view,txm as bar_code," +
 			"'' as unpack_view,'' as specification_view, " +
-			"shop_price as supplier_price,goods_id_s as drugid from yzy_goods " +
+			"DJ as supplier_price,goods_id_s as drugid from yzy_goods " +
 			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
 			"and  (((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
 			"and goods_sn like 'HYYP%' or goods_sn like 'YMD%' or goods_sn like 'MDY%') and bz > zbz and shop_price > 0 " )
