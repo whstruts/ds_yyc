@@ -14,7 +14,7 @@ public interface SpzlMapper {
 	@Select("select goods_id,goods_name,goods_number,ypdm,cdmc,gg,txm,shop_price,dw,jx,pzwh,bz,zbz,yxq,ph,isretail,pch,scrq from yzy_goods " +
 			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1 " +
 			"and ((ISRETAIL = 0 and goods_number+1 > bz * 20) or (ISRETAIL = 1 and goods_number+1 > bz * 1.5) )" +
-			"and goods_sn like 'HYYP%' and bz > zbz and shop_price > 0 " +
+			"and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 " +
 			"or (goods_sn like 'YMD%'and is_on_sale = 1 and bz > 0)")
 	public List<Spzl> getKC();
 
@@ -24,7 +24,7 @@ public interface SpzlMapper {
 			"'' as g_purview,isretail as g_can_split,'' as g_order_cate,'0' as g_area,'0' as g_control,'1' as g_status from yzy_goods " +
 			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
 			"and  (ISRETAIL = 1 and goods_number+1 > bz * 1.5) " +
-			"and goods_sn like 'HYYP%' and bz > zbz and shop_price > 0 " )
+			"and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 " )
 	public List<Spb> getspb();
 
 	@Select("select ypdm,cddm,jx,scrq,txm,case when isnull(goods_id_s) then goods_sn else goods_id_s end as goods_id_s,goods_sn," +
@@ -39,7 +39,7 @@ public interface SpzlMapper {
 			"DJ as supplier_price,goods_id_s as drugid from yzy_goods " +
 			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
 			"and  (((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
-			"and goods_sn like 'HYYP%' or goods_sn like 'YMD%' or goods_sn like 'MDY%') and bz > zbz and shop_price > 0 " )
+			"and goods_sn like 'KXN%' or goods_sn like 'YMD%' or goods_sn like 'MDY%') and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 " )
 	public List<Spbnew> getspbnew();
 
 	@Select("select goods_sn,goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
@@ -52,14 +52,14 @@ public interface SpzlMapper {
 			"shop_price as supplier_price,goods_id as drugid, " +
 			"ypdm,cddm,jx,scrq,txm,goods_id_s from yzy_goods " +
 			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
-			"and goods_sn like 'YMD%' and bz > zbz and shop_price > 0 " )
+			"and goods_sn like 'YMD%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 " )
 	public List<Spbnew> getspbnewymd();
 
 	@Select("select goods_id as g_in_sn,goods_id as gb_id_no,'' as gb_ku_no,'' as gb_hw_no,ph as gb_batch_no," +
 			"yxq as gb_end_time, goods_number as gb_number from yzy_goods " +
 			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
 			"and  (ISRETAIL = 1 and goods_number+1 > bz * 1.5) " +
-			"and goods_sn like 'HYYP%' and bz > zbz and shop_price > 0 " )
+			"and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 " )
 	public List<kcb> getkcb();
 
 	@Select("select code as  c_internal_code,dwbh as  c_code,name as  c_name ,jcpym as  c_name_code ,	'1' as  c_status ,"+
@@ -77,7 +77,7 @@ public interface SpzlMapper {
 	@Select("select goods_sn,goods_name,gg,cdmc,case  when isretail = 1 then zbz else bz end mpn,"+
 			" bz,shop_price,dw,jx,pzwh,txm from hykx.yzy_goods  where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
 			" and  (ISRETAIL = 1 and goods_number+1 > bz * 1.5) " +
-			" and goods_sn like 'YSBHYYP%' and bz > zbz and shop_price > 0 LIMIT #{aaa},#{bbb}")
+			" and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 LIMIT #{aaa},#{bbb}")
 	public List<Spzl> getyycsjsp(hh h1);
 
     @Select("SELECT goods_id,goods_number,ROUND(DJ*1.15,2) as gyj_price,shop_price," +
@@ -85,7 +85,7 @@ public interface SpzlMapper {
             " cdmc,bz,dw,jx,pzwh,txm,goods_sn,yxq,zbz,case  when isretail = 1 then '拆零' else '整件' end sfcl " +
 			" FROM hykx.yzy_goods " +
 			" WHERE RPAD( YXQ, 10, '-01' ) >  DATE_ADD(SYSDATE(),INTERVAL 365 DAY) " +
-            " AND is_on_sale = 1  AND goods_sn LIKE 'YSBHYYP%' AND shop_price > 0 ")
+            " AND is_on_sale = 1  AND goods_sn LIKE 'KXN%' AND shop_price > 0 ")
     public List<Spzl> getxyysp();
 
     @Select("SELECT goods_id,goods_number,ROUND(DJ*1.15,2) as gyj_price,shop_price," +
@@ -94,13 +94,13 @@ public interface SpzlMapper {
             " FROM hykx.yzy_goods " +
            "  where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
             " and  ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2))" +
-            " and goods_sn like 'YSBHYYP%' and bz > zbz and shop_price > 0 and from_unixtime(add_time,'%Y-%m-%d')= #{sdate}")
+            " and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 and from_unixtime(add_time,'%Y-%m-%d')= #{sdate}")
     public List<Spzl> getysbnew(String sdate);
 
 	@Select("select goods_sn,goods_name,gg,cdmc,case  when isretail = 1 then zbz else bz end mpn,"+
 			" bz,shop_price,dw,jx,pzwh,txm from hykx.yzy_goods  where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
 			" and  (ISRETAIL = 1 and goods_number+1 > bz * 1.5) " +
-			" and goods_sn like 'YSBHYYP%' and bz > zbz and shop_price > 0 ")
+			" and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 ")
 	public List<Spzl> getyycsjspa();
 
 	@Select("select goods_name,dw,jx,gg,cdmc,bz,pzwh  from yzy_goods group by goods_name,dw,jx,gg,cdmc,bz ")
