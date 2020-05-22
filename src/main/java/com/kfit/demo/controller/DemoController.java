@@ -9,9 +9,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.kfit.demo.bean.*;
 import com.kfit.demo.service.SpzlService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.kfit.demo.service.DemoService;
 
@@ -106,6 +104,15 @@ public class DemoController {
 		 */
 		//	PageHelper.startPage(1, 2);
 		return spzlService.getkhb();
+	}
+	@RequestMapping(value ="/geterpkc", method = RequestMethod.GET) //20200522 whstruts
+	public List<erp_stock> geterpkc(@RequestParam String cwtz) {
+		/*
+		 * 第一个参数：第几页;
+		 * 第二个参数：每页获取的条数.
+		 */
+		//	PageHelper.startPage(1, 2);
+		return spzlService.geterpkc(cwtz);
 	}
 	@RequestMapping("/getkcb")
 	public List<kcb> getkcb(){

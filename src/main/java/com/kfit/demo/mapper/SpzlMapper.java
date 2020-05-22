@@ -69,6 +69,9 @@ public interface SpzlMapper {
 			"fzrlxdh as  c_phone,'' as  c_province,'' as  c_city,'' as  c_address from zt_kh where xkzyxqz <> '0000-00-00' and zzyxqz <> '0000-00-00' LIMIT 58")
 	public List<Khzl> getkhb();
 
+	@Select("select code,amount,batchnumber,validdate,productdate,price from zt_ywkc where cwtz = #{cwtz}")
+	public List<erp_stock> geterpkc(String cwtz);
+
 
 
 	@Select("select goods_sn,case  when isretail = 1 then zbz else bz end goods_mpn,jx,gg,dw from hykx.yzy_goods ")

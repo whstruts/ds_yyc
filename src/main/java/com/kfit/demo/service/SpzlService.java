@@ -36,6 +36,10 @@ public class SpzlService {
 		return spzlMappper.getkhb();
 	}
 
+	public List<erp_stock> geterpkc(String cwtz) {
+		return spzlMappper.geterpkc(cwtz);
+	}
+
 	public List<User> getuser(String sum_date){ return spzlMappper.getusers(sum_date);} //20190426 whstruts
 
 	public void ItoUsers(User user){
