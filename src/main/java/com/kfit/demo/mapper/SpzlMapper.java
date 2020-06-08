@@ -37,9 +37,11 @@ public interface SpzlMapper {
 			"goods_number as repertory,'' as supplier,'' as left_view,'' as right_view,txm as bar_code," +
 			"'' as unpack_view,'' as specification_view, " +
 			"DJ as supplier_price,goods_id_s as drugid from yzy_goods " +
-			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
-			"and  (((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
-			"and goods_sn like 'KXN%' or goods_sn like 'YMD%' or goods_sn like 'MDY%') and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 " )
+			" where ((RPAD(YXQ,10,'-15') >sysdate()    " +
+			" and ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
+			" and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed))" +
+			" or  (goods_sn like 'YMD%' or goods_sn like 'MDY%')) " +
+			" and (shop_price > 0 and is_on_sale = 1)" )
 	public List<Spbnew> getspbnew();
 
 	@Select("select goods_sn,goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
