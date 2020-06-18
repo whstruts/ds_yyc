@@ -86,6 +86,16 @@ public class DemoController {
 		return spzlService.getspbnew();
 	}
 
+	@RequestMapping("/getspbnewzy")
+	public List<Spbnew> getspbnewzy() {
+		/*
+		 * 第一个参数：第几页;
+		 * 第二个参数：每页获取的条数.
+		 */
+		//	PageHelper.startPage(1, 2);
+		return spzlService.getspbnewzy();
+	}
+
 	@RequestMapping("/getspbnewymd")
 	public List<Spbnew> getspbnewymd() {
 		/*
