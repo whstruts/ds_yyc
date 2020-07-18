@@ -104,7 +104,7 @@ public interface SpzlMapper {
             " cdmc,bz,dw,jx,pzwh,txm,goods_sn,yxq,zbz,case  when isretail = 1 then '拆零' else '整件' end sfcl " +
 			" FROM hykx.yzy_goods " +
 			" WHERE RPAD( YXQ, 10, '-01' ) >  DATE_ADD(SYSDATE(),INTERVAL 365 DAY) " +
-            " AND is_on_sale = 1  AND goods_sn LIKE 'KXN%' AND shop_price > 0 ")
+            " AND is_on_sale = 1  AND goods_sn LIKE 'YSBKXN%' AND shop_price > 0 ")
     public List<Spzl> getxyysp();
 
     @Select("SELECT goods_id,goods_number,ROUND(DJ*1.15,2) as gyj_price,shop_price," +
@@ -119,7 +119,7 @@ public interface SpzlMapper {
 	@Select("select goods_sn,goods_name,gg,cdmc,case  when isretail = 1 then zbz else bz end mpn,"+
 			" bz,shop_price,dw,jx,pzwh,txm from hykx.yzy_goods  where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
 			" and  (ISRETAIL = 1 and goods_number+1 > bz * 1.5) " +
-			" and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 ")
+			" and goods_sn like 'YSBKXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 ")
 	public List<Spzl> getyycsjspa();
 
 	@Select("select goods_name,dw,jx,gg,cdmc,bz,pzwh  from yzy_goods group by goods_name,dw,jx,gg,cdmc,bz ")
