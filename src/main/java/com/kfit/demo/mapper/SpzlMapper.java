@@ -55,7 +55,7 @@ public interface SpzlMapper {
 			"'' as unpack_view,'' as specification_view, " +
 			"DJ as supplier_price,goods_id_s as drugid from yzy_goods " +
 			" where (  (goods_sn like 'YMD%' or goods_sn like 'MDY%')" +
-			" and  (shop_price > 0 and is_on_sale = 1 and is_delete = 0))" )
+			" and  (shop_price > 0 and is_on_sale = 1 and is_delete = 0) and cast(bz as signed) > cast(zbz as signed))" )
 	public List<Spbnew> getspbnewzy();
 
 	@Select("select goods_sn,goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
