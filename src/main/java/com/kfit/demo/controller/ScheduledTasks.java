@@ -26,26 +26,29 @@ public class ScheduledTasks {
 
         Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
         int hour = c.get(Calendar.HOUR_OF_DAY);
-        String yywdata;
-        yywdata = ExportExcelUtils.batchSnycTestceshi();
-        JSONObject obj= JSONObject.parseObject(yywdata);
-        obj = obj.getJSONObject("data");
-        JSONArray orderList = obj.getJSONArray("orderList");
-        for (int i = 0;i<orderList.size();i++)
+        String yywdataX = "";
+        yywdataX = ExportExcelUtils.batchSnycTestceshi();
+        if(yywdataX.length()>0)
         {
-            JSONObject objorder = (JSONObject) orderList.get(i);
-            yywddhz hz = JSONObject.toJavaObject(objorder,yywddhz.class);
-            spzlService.InToDDHZ(hz);
-            JSONArray order_detailList = objorder.getJSONArray("order_detailList");
-            for (int j= 0;j<order_detailList.size();j++)
+            JSONObject obj= JSONObject.parseObject(yywdataX);
+            obj = obj.getJSONObject("data");
+            JSONArray orderList = obj.getJSONArray("orderList");
+            for (int i = 0;i<orderList.size();i++)
             {
-                JSONObject objorder_detail = (JSONObject) order_detailList.get(j);
-                yywddmx mx = JSONObject.toJavaObject(objorder_detail,yywddmx.class);
-                spzlService.InToDDMX(mx);
+                JSONObject objorder = (JSONObject) orderList.get(i);
+                yywddhz hz = JSONObject.toJavaObject(objorder,yywddhz.class);
+                spzlService.InToDDHZ(hz);
+                JSONArray order_detailList = objorder.getJSONArray("order_detailList");
+                for (int j= 0;j<order_detailList.size();j++)
+                {
+                    JSONObject objorder_detail = (JSONObject) order_detailList.get(j);
+                    yywddmx mx = JSONObject.toJavaObject(objorder_detail,yywddmx.class);
+                    spzlService.InToDDMX(mx);
+                }
             }
+            spzlService.YYW_AddHZ();
+            System.out.println("Do YYW_AddHZ time is  " + dateFormat.format(new Date()));
         }
-        spzlService.YYW_AddHZ();
-        System.out.println("Do YYW_AddHZ time is  " + dateFormat.format(new Date()));
     }
 
 }
