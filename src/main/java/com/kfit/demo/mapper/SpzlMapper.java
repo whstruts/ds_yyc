@@ -34,7 +34,7 @@ public interface SpzlMapper {
 			"case when goods_sn like 'YMD%' or goods_sn like 'MDY%' then CONCAT('http://www.ymdb2b.com/',goods_img) else goods_img end as drug_img," +
 			"gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
 			"'' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
-			"goods_number as repertory,IFNULL(suppliers_name,'康信')  as supplier,'' as left_view,'' as right_view,txm as bar_code," +
+			"goods_number as repertory,IFNULL(suppliers_name,'康信')  as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
 			"'' as unpack_view,'' as specification_view, " +
 			"DJ as supplier_price,goods_id_s as drugid from yzy_goods g left JOIN yzy_suppliers s on " +
 			"g.suppliers_id = s.suppliers_id " +
