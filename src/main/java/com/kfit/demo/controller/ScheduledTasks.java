@@ -23,14 +23,14 @@ public class ScheduledTasks {
     private static final SimpleDateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
     @Scheduled(fixedDelay = 60*1000)
     public void reportCurrentTime()throws Exception {
-
+        //接收医药网数据
         Calendar c = Calendar.getInstance();//可以对每个时间域单独修改
         int hour = c.get(Calendar.HOUR_OF_DAY);
-        String yywdataX = "";
-        yywdataX = ExportExcelUtils.batchSnycTestceshi();
-        if(yywdataX.length()>0)
+        String Data = "";
+        Data = ExportExcelUtils.batchSnycTestceshi();
+        if(Data.length()>0)
         {
-            JSONObject obj= JSONObject.parseObject(yywdataX);
+            JSONObject obj= JSONObject.parseObject(Data);
             obj = obj.getJSONObject("data");
             JSONArray orderList = obj.getJSONArray("orderList");
             for (int i = 0;i<orderList.size();i++)
