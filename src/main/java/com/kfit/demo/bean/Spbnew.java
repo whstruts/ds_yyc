@@ -364,4 +364,14 @@ public class Spbnew {
 
     private String supplier_price;
     private String drugid;
+
+    public String getSuppliers_name() {
+        return suppliers_name;
+    }
+
+    public void setSuppliers_name(String suppliers_name) {
+        this.suppliers_name = suppliers_name;
+    }
+
+    private String suppliers_name;
 }
