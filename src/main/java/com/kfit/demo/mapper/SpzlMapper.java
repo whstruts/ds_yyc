@@ -27,22 +27,13 @@ public interface SpzlMapper {
 			"and goods_sn like 'KXN%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 " )
 	public List<Spb> getspb();
 
-	@Select("select IFNULL(suppliers_name,'亿诺医药') as suppliers_name,ypdm,cddm,jx,scrq,txm,case when isnull(goods_id_s) then goods_sn else goods_id_s end as goods_id_s,goods_sn," +
-			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
-			"'' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
-			"'' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand, "+
-			"case when goods_sn like 'YYN%' or goods_sn like 'NYY%' then CONCAT('http://www.hbyyn.com/',goods_img) else goods_img end as drug_img," +
-			"gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
-			"'' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
-			"goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
-			"'' as unpack_view,'' as specification_view, " +
-			"DJ as supplier_price,goods_id_s as drugid from yzy_goods g left JOIN yzy_suppliers s on " +
-			"g.suppliers_id = s.suppliers_id " +
-			" where ((RPAD(YXQ,10,'-15') >sysdate()    " +
-			" and ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
-			" and goods_sn like 'HYYP%' and cast(bz as signed) > cast(zbz as signed))" +
-			" or (goods_sn like 'YYN%' or goods_sn like 'NYY%')) " +
-			" and (shop_price > 0 and is_on_sale = 1 and is_delete = 0)" )
+	@Select("select suppliers_name as suppliers_name,ypdm as ypdm,cddm as cddm,jx as jx,CONVERT(varchar(100), scrq, 23) as scrq," +
+			"goods_id_s as goods_id_s,goods_sn as goods_sn,drug_common_name as drug_common_name,manufacturer as manufacturer," +
+			"approve_numer as approve_number,drug_img as drug_img,specifications as specifications,package_unit as package_unit," +
+			"medium_package as medium_package,large_package as large_package,'1' as is_retail," +
+			"CONVERT(varchar(100), production_batch, 23) as production_batch,CONVERT(varchar(100), date_expiration, 23) as date_expiretion," +
+			"repertory as repertory,bar_code as bar_code,suppliers_price as supplier_price,drugid as drugid," +
+			"is_on_sale as is_on_sale,category as category from v_ware_b2b_tyt")
 	public List<Spbnew> getspbnew();
 
 	@Select("select ypdm,cddm,jx,scrq,txm,case when isnull(goods_id_s) then goods_sn else goods_id_s end as goods_id_s,goods_sn," +
