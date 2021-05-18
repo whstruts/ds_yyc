@@ -26,6 +26,11 @@ public class SpzlService {
 	public List<Spbnew> getspbnew() {
 		return spzlMappper.getspbnew();
 	}
+
+	public List<Custom> GetCustomerByTaxNo(String taxnumber) {
+		return spzlMappper.GetCustomerByTaxNo(taxnumber);
+	}
+
 	public List<Spbnew> getspbnewzy() {
 		return spzlMappper.getspbnewzy();
 	}

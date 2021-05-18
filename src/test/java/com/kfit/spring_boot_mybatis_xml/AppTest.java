@@ -19,7 +19,7 @@ public class AppTest
     public AppTest( String testName )
     {
         super( testName );
-        ExportExcelUtils.batchSnycTestceshi();
+      //  ExportExcelUtils.batchSnycTestceshi();
     }
 
     /**

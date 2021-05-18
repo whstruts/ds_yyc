@@ -36,6 +36,9 @@ public interface SpzlMapper {
 			"is_on_sale as is_on_sale,category as category from v_ware_b2b_tyt")
 	public List<Spbnew> getspbnew();
 
+	@Select("select erpCustomerID AS code,erpCustomerName AS name,custom AS type,taxnumber,categories from v_custom_b2b_tyt where taxnumber = #{taxnumber}")
+	public List<Custom> GetCustomerByTaxNo(String taxnumber);
+
 	@Select("select ypdm,cddm,jx,scrq,txm,case when isnull(goods_id_s) then goods_sn else goods_id_s end as goods_id_s,goods_sn," +
 			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"'' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
