@@ -17,21 +17,16 @@ public class DemoController {
 
 	@RequestMapping("/getspbnew")
 	public List<Spbnew> getspbnew() {
-		/*
-		 * 第一个参数：第几页;
-		 * 第二个参数：每页获取的条数.
-		 */
-		//	PageHelper.startPage(1, 2);
 		return spzlService.getspbnew();
+	}
+
+	@RequestMapping(value ="/GetKCByIDNEWX", method = RequestMethod.GET)
+	public List<Spbnew> GetKCByIDNEWX(@RequestParam String id) {
+		return spzlService.GetKCByIDNEWX(id);
 	}
 
 	@RequestMapping(value ="/GetCustomerByTaxNo", method = RequestMethod.GET)
 	public List<Custom> GetCustomerByTaxNo(@RequestParam String taxnumber) {
-		/*
-		 * 第一个参数：第几页;
-		 * 第二个参数：每页获取的条数.
-		 */
-		//	PageHelper.startPage(1, 2);
 		return spzlService.GetCustomerByTaxNo(taxnumber);
 	}
 
