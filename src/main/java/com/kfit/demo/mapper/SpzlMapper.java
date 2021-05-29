@@ -1,11 +1,9 @@
 package com.kfit.demo.mapper;
 
 import com.kfit.demo.bean.*;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SpzlMapper {
 
