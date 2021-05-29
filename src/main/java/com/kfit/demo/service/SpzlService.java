@@ -16,12 +16,5 @@ public class SpzlService {
 		return spzlMappper.getspbnew();
 	}
 
-	public List<Spbnew> GetKCByIDNEWX(String id) {
-		return spzlMappper.GetKCByIDNEWX(id);
-	}
-
-	public List<Custom> GetCustomerByTaxNo(String taxnumber) {
-		return spzlMappper.GetCustomerByTaxNo(taxnumber);
-	}
 
 }

@@ -20,15 +20,6 @@ public class DemoController {
 		return spzlService.getspbnew();
 	}
 
-	@RequestMapping(value ="/GetKCByIDNEWX", method = RequestMethod.GET)
-	public List<Spbnew> GetKCByIDNEWX(@RequestParam String id) {
-		return spzlService.GetKCByIDNEWX(id);
-	}
-
-	@RequestMapping(value ="/GetCustomerByTaxNo", method = RequestMethod.GET)
-	public List<Custom> GetCustomerByTaxNo(@RequestParam String taxnumber) {
-		return spzlService.GetCustomerByTaxNo(taxnumber);
-	}
 
 }
 
