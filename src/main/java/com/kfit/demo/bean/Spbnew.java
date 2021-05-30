@@ -14,6 +14,16 @@ public class Spbnew {
     private String cddm;
     private String jx;
 
+    public String getErp_category() {
+        return erp_category;
+    }
+
+    public void setErp_category(String erp_category) {
+        this.erp_category = erp_category;
+    }
+
+    private String erp_category;
+
     public String getYpdm() {
         return ypdm;
     }
