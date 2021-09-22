@@ -9,4 +9,5 @@ public class DDHZ {
     String APP_DD_ID;
     String ERP_Custom_ID;
     Date Create_Time;
+    double DD_HJ;
 }

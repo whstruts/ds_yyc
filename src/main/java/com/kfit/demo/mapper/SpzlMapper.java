@@ -15,10 +15,10 @@ public interface SpzlMapper {
 	        "a.guid as drugid,'1' as is_on_sale,GSPSortID as category from phk a,yw_kck b where a.hh = b.hh and a.sl > 0")
 	public List<Spbnew> getspbnew();
 
-	@Insert("")
+	@Insert("insert into jk_xsddhead(APP_DD_ID,ERP_CUSTOM_ID,CREATE_TIME) values(#{APP_DD_ID},#{ERP_Custom_ID},#{Create_Time})")
 	void insertHZ(DDHZ ddhz);
 
-	@Insert("")
+	@Insert("insert into jk_xsdd(APP_DD_ID,MX_ID,ERP_SP_ID,ERP_SP_DJ,ERP_SP_SL) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_DJ},#{ERP_SP_SL})")
 	void insertMX(DDMX ddmx);
 
 }

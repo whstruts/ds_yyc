@@ -20,6 +20,11 @@ public class DemoController {
 		return spzlService.getspbnew();
 	}
 
+	@RequestMapping("/saveOrder")
+	public void saveOrder() {
+
+	}
+
 
 }
 
