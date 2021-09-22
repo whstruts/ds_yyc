@@ -15,6 +15,10 @@ public class SpzlService {
 	public List<Spbnew> getspbnew() {
 		return spzlMappper.getspbnew();
 	}
-
-
+    public void intsertHZ(DDHZ ddhz){
+		spzlMappper.insertHZ(ddhz);
+	}
+	public void intsertMX(DDMX ddmx){
+		spzlMappper.insertMX(ddmx);
+	}
 }

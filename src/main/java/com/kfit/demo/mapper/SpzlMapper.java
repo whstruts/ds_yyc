@@ -1,6 +1,7 @@
 package com.kfit.demo.mapper;
 
 import com.kfit.demo.bean.*;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
@@ -13,5 +14,11 @@ public interface SpzlMapper {
 	        "PH as production_batch,CONVERT(varchar(100),a.XQ,23) as date_expiration,a.sl as repertory,b.tm as bar_code,PFJ as supplier_price,"+
 	        "a.guid as drugid,'1' as is_on_sale,GSPSortID as category from phk a,yw_kck b where a.hh = b.hh and a.sl > 0")
 	public List<Spbnew> getspbnew();
+
+	@Insert("")
+	void insertHZ(DDHZ ddhz);
+
+	@Insert("")
+	void insertMX(DDMX ddmx);
 
 }
