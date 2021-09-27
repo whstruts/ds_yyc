@@ -30,7 +30,7 @@ public interface SpzlMapper {
 			" where Goods_id_s = #{id}")
 	public List<Spbnew> GetKCByIDNEWX(String id);
 
-	@Select("select erpCustomerID AS code,erpCustomerName AS name,custom AS type,taxnumber,categories from v_custom_b2b_tyt where taxnumber = #{taxnumber}")
+	@Select("select erpCustomerID AS code,erpCustomerName AS name,'' AS type,Type_numbers as taxnumber,categories from dw_yxxx where taxnumber = #{taxnumber}")
 	public List<Custom> GetCustomerByTaxNo(String taxnumber);
 
 }
