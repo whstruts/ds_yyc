@@ -36,7 +36,7 @@ public interface SpzlMapper {
 			"'' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
 			"'' as unpack_view,'' as specification_view, " +
-			"DJ*ZK as supplier_price,goods_id_s as drugid from yzy_goods g left JOIN yzy_suppliers s on " +
+			"TRUNCATE(DJ*ZK,2) as supplier_price,goods_id_s as drugid from yzy_goods g left JOIN yzy_suppliers s on " +
 			"g.suppliers_id = s.suppliers_id " +
 			" where ((RPAD(YXQ,10,'-15') >sysdate()    " +
 			" and ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
