@@ -30,4 +30,7 @@ public interface SpzlMapper {
 	@Select("select erpCustomerID AS code,erpCustomerName AS name,cust_type AS type,taxnumber,categories from v_custom_b2b_tyt where taxnumber = #{taxnumber}")
 	public List<Custom> GetCustomerByTaxNo(String taxnumber);
 
+	@Select("select a.信用额度 as creditAmount,a.信用天数 as crediDays,a.erpCustomerID from (select * from v_custom_b2b_tyt) a")
+	public List<Custom> GetCustomersCredit();
+
 }

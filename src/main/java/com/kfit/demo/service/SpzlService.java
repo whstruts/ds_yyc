@@ -24,4 +24,8 @@ public class SpzlService {
 		return spzlMappper.GetCustomerByTaxNo(taxnumber);
 	}
 
+	public List<Custom> GetCustomersCredit() {
+		return spzlMappper.GetCustomersCredit();
+	}
+
 }

@@ -30,5 +30,10 @@ public class DemoController {
 		return spzlService.GetCustomerByTaxNo(taxnumber);
 	}
 
+	@RequestMapping(value ="/GetCustomersCredit", method = RequestMethod.GET)
+	public List<Custom> GetCustomersCredit() {
+		return spzlService.GetCustomersCredit();
+	}
+
 }
 

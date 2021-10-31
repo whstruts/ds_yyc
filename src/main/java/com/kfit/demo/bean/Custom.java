@@ -72,7 +72,27 @@ public class Custom {
     }
 
     private String telephone;
-       private String linkman;
-       private String address;
-       private String taxnumber;
+    private String linkman;
+    private String address;
+    private String taxnumber;
+
+    public String getCreditAmount() {
+        return creditAmount;
+    }
+
+    public void setCreditAmount(String creditAmount) {
+        this.creditAmount = creditAmount;
+    }
+
+    public String getCreditDays() {
+        return creditDays;
+    }
+
+    public void setCreditDays(String creditDays) {
+        this.creditDays = creditDays;
+    }
+
+    private String creditAmount;
+    private String creditDays;
+
 }
