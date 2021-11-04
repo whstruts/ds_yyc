@@ -21,6 +21,9 @@ public class SpzlService {
 	public Spbnew getspbnewById(String id) {
 		return spzlMappper.getspbnewById(id);
 	}
+	public Custom getCustomerByTaxNo(String taxNo) {
+		return spzlMappper.getCustomerByTaxNo(taxNo);
+	}
 	@Transactional(rollbackFor = Exception.class)
 	public String saveOrder(String order){
 		OrderDetails orderDetails = JSONObject.parseObject(order,OrderDetails.class);

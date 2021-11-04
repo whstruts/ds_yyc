@@ -26,6 +26,11 @@ public class DemoController {
 		return spzlService.getspbnewById(goods_id);
 	}
 
+	@RequestMapping("/getCustomerByTaxNo")
+	public Custom getCustomerByTaxNo(@RequestParam("taxNo") @NotEmpty(message = "税号为空") String taxNo) {
+		return spzlService.getCustomerByTaxNo(taxNo);
+	}
+
 	@RequestMapping("/saveOrder")
 	public String saveOrder(@RequestParam("orderDetail") @NotEmpty(message = "订单信息为空") String orderDetail) {
        return spzlService.saveOrder(orderDetail);
