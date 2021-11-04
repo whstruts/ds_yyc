@@ -21,6 +21,11 @@ public class DemoController {
 		return spzlService.getspbnew();
 	}
 
+	@RequestMapping("/getspbnewbyid")
+	public Spbnew getspbnewbyid(@RequestParam("goods_id") @NotEmpty(message = "商品ID为空") String goods_id) {
+		return spzlService.getspbnewById(goods_id);
+	}
+
 	@RequestMapping("/saveOrder")
 	public String saveOrder(@RequestParam("orderDetail") @NotEmpty(message = "订单信息为空") String orderDetail) {
        return spzlService.saveOrder(orderDetail);
