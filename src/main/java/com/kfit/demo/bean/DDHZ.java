@@ -10,4 +10,5 @@ public class DDHZ {
     String ERP_Custom_ID;
     Date Create_Time;
     double DD_HJ;
+    boolean IS_PAY;
 }

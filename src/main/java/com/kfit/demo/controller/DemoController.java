@@ -26,6 +26,11 @@ public class DemoController {
 		return spzlService.getspbnewById(goods_id);
 	}
 
+	@RequestMapping("/UpdateOrderStatusByID")
+	public void UpdateOrderStatusByID(@RequestParam("id") @NotEmpty(message = "订单ID为空") String id) {
+		spzlService.UpdateOrderStatusByID(id);
+	}
+
 	@RequestMapping("/getCustomerByTaxNo")
 	public Custom getCustomerByTaxNo(@RequestParam("taxNo") @NotEmpty(message = "税号为空") String taxNo) {
 		return spzlService.getCustomerByTaxNo(taxNo);

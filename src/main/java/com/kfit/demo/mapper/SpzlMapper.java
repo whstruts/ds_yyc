@@ -3,6 +3,7 @@ package com.kfit.demo.mapper;
 import com.kfit.demo.bean.*;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -25,10 +26,13 @@ public interface SpzlMapper {
 	@Select("select tjbh as code,mc as name,tel as telephone,qyfzr as linkman,yydz as address,YYZZ as taxnumber,YLJGXKZH as xkzh from gl_custom where YYZZ = #{taxNo} or YLJGXKZH = #{taxNo}")
 	public Custom getCustomerByTaxNo(String taxNo);
 
-	@Insert("insert into jk_xsddhead(APP_DD_ID,ERP_CUSTOM_ID,CREATE_TIME) values(#{APP_DD_ID},#{ERP_Custom_ID},#{Create_Time})")
+	@Insert("insert into jk_xsddhead(APP_DD_ID,ERP_CUSTOM_ID,CREATE_TIME,IS_PAY) values(#{APP_DD_ID},#{ERP_Custom_ID},#{Create_Time},0)")
 	void insertHZ(DDHZ ddhz);
 
 	@Insert("insert into jk_xsdd(APP_DD_ID,MX_ID,ERP_SP_ID,ERP_SP_DJ,ERP_SP_SL) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_DJ},#{ERP_SP_SL})")
 	void insertMX(DDMX ddmx);
+
+	@Update("update jk_xsddhead set IS_PAY = 1 where APP_DD_ID = #{id}")
+	public void UpdateOrderStatusByID(String id);
 
 }

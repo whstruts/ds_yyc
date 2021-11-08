@@ -24,6 +24,9 @@ public class SpzlService {
 	public Custom getCustomerByTaxNo(String taxNo) {
 		return spzlMappper.getCustomerByTaxNo(taxNo);
 	}
+	public void UpdateOrderStatusByID(String id) {
+		spzlMappper.UpdateOrderStatusByID(id);
+	}
 	@Transactional(rollbackFor = Exception.class)
 	public String saveOrder(String order){
 		OrderDetails orderDetails = JSONObject.parseObject(order,OrderDetails.class);
