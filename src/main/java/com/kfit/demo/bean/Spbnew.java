@@ -356,13 +356,7 @@ public class Spbnew {
     private String unpack_view;
     private String specification_view;
 
-    public String getSupplier_price() {
-        return supplier_price;
-    }
 
-    public void setSupplier_price(String supplier_price) {
-        this.supplier_price = supplier_price;
-    }
 
     public String getDrugid() {
         return drugid;
@@ -370,6 +364,15 @@ public class Spbnew {
 
     public void setDrugid(String drugid) {
         this.drugid = drugid;
+    }
+
+
+    public String getSupplier_price() {
+        return supplier_price;
+    }
+
+    public void setSupplier_price(String supplier_price) {
+        this.supplier_price = supplier_price;
     }
 
     private String supplier_price;
