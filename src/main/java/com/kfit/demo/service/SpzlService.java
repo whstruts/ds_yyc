@@ -12,8 +12,12 @@ public class SpzlService {
 	@Autowired
 	private SpzlMapper spzlMappper;
 
-	public List<Spbnew> getspbnew() {
-		return spzlMappper.getspbnew();
+	public List<Spbnew> getspbnewHY() {
+		return spzlMappper.getspbnewHY();
+	}
+
+	public List<Spbnew> getspbnewNY() {
+		return spzlMappper.getspbnewNY();
 	}
 
 	public List<Spbnew> GetKCByIDNEWX(String id) {

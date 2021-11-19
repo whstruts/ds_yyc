@@ -15,9 +15,14 @@ public class DemoController {
 	private SpzlService spzlService;
 
 
-	@RequestMapping("/getspbnew")
-	public List<Spbnew> getspbnew() {
-		return spzlService.getspbnew();
+	@RequestMapping("/getspbnewHY")
+	public List<Spbnew> getspbnewHY() {
+		return spzlService.getspbnewHY();
+	}
+
+	@RequestMapping("/getspbnewNY")
+	public List<Spbnew> getspbnewNY() {
+		return spzlService.getspbnewNY();
 	}
 
 	@RequestMapping(value ="/GetKCByIDNEWX", method = RequestMethod.GET)
