@@ -8,4 +8,7 @@ public class OrderDetails {
     String order_id;
     List<OrderDetail> data;
     String erpCustomerID;
+    Boolean isPay;
+    int countQty;
+    Double Total;
 }

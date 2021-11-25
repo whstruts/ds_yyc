@@ -3,6 +3,11 @@ import lombok.Data;
 @Data
 public class OrderDetail {
     String goods_id_s;
-    String SL;
-    String dj;
+    int sL;
+    Double dj;
+    String makeNo;
+    Double SuppliersPrice;
+    int SalesVolume;
+    Double AppPrice;
+    String OrderId;
 }

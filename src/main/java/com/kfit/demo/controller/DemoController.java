@@ -30,6 +30,11 @@ public class DemoController {
 		return spzlService.GetCustomerByTaxNo(taxnumber);
 	}
 
+	@RequestMapping(value ="/SaveOrder", method = RequestMethod.POST)
+	public String SaveOrder(@RequestParam String orderDetail) {
+		return spzlService.SaveOrder(orderDetail);
+	}
+
 	@RequestMapping(value ="/GetCustomersCredit", method = RequestMethod.GET)
 	public List<Custom> GetCustomersCredit() {
 		return spzlService.GetCustomersCredit();

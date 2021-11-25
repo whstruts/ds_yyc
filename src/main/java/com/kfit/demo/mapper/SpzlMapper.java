@@ -33,4 +33,9 @@ public interface SpzlMapper {
 	@Select("select erpCustomerID AS code,erpCustomerName AS name,cust_type AS type,taxnumber,categories,a.信用额度 as creditAmount,a.信用天数 as creditDays,a.erpCustomerID from (select * from v_custom_b2b_tyt) a")
 	public List<Custom> GetCustomersCredit();
 
+	@Insert("INSERT INTO d_third_order(order_id,erpCustomerID,Is_pay,count_qty,Total,Create_time)Values(#{order_id},#{erpCustomerID},#{isPay},#{countQty},#{Total},getdate())")
+	public int SaveThirdOrder(OrderDetails orderDetails);
+	@Insert("INSERT INTO d_third_order_mx(order_id,goods_id_s,makeno,Suppliers_price,Sales_volume,App_price)Values(#{orderId},#{goods_id_s},#{makeNo},#{SuppliersPrice},#{SalesVolume},#{AppPrice})")
+	public int SaveThirdOrderMX(OrderDetail orderDetail);
+
 }
