@@ -33,7 +33,8 @@ public interface SpzlMapper {
 	@Select("select erpCustomerID AS code,erpCustomerName AS name,cust_type AS type,taxnumber,categories,a.信用额度 as creditAmount,a.信用天数 as creditDays,a.erpCustomerID from (select * from v_custom_b2b_tyt) a")
 	public List<Custom> GetCustomersCredit();
 
-	@Insert("INSERT INTO d_third_order(order_id,erpCustomerID,Is_pay,count_qty,Total,Create_time)Values(#{order_id},#{erpCustomerID},#{isPay},#{countQty},#{Total},getdate())")
+	@Insert("INSERT INTO d_third_order(order_id,erpCustomerID,Is_pay,count_qty,Total,Create_time,b2b_prom_id,b2b_prom_name,b2b_prom_type,b2b_prom_copuno,b2b_prom_total,b2b_prom_zp,b2b_prom_wx,b2b_prom_zfb,b2b_prom_acount,b2b_prom_yezf,b2b_prom_sjtotal,b2b_prom_ordertotal) " +
+			" Values(#{order_id},#{erpCustomerID},#{isPay},#{countQty},#{Total},getdate(),#{b2b_prom_id},#{b2b_prom_name},#{b2b_prom_type},#{b2b_prom_copuno},#{b2b_prom_total},#{b2b_prom_zp},#{b2b_prom_wx},#{b2b_prom_zfb},#{b2b_prom_acount},#{b2b_prom_yezf},#{b2b_prom_sjtotal},#{b2b_prom_ordertotal})")
 	public int SaveThirdOrder(OrderDetails orderDetails);
 	@Insert("INSERT INTO d_third_order_mx(order_id,goods_id_s,makeno,Suppliers_price,Sales_volume,App_price)Values(#{orderId},#{goods_id_s},#{makeNo},#{SuppliersPrice},#{SalesVolume},#{AppPrice})")
 	public int SaveThirdOrderMX(OrderDetail orderDetail);

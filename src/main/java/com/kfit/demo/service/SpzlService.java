@@ -44,8 +44,9 @@ public class SpzlService {
         orderDetails.setIsPay(true);
 		orderDetails.setCountQty(orderDetails.getData().size());
 		orderDetails.setTotal(Double.valueOf(total.toString()));
+
 		spzlMappper.SaveThirdOrder(orderDetails);
-		return "订单保存成功:总金额 " + orderDetails.getTotal() + " 元";
+		return "订单保存成功:总金额 " + orderDetails.getB2b_prom_ordertotal() + " 元";
 	}
 
 	public List<Custom> GetCustomersCredit() {
