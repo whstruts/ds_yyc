@@ -23,7 +23,7 @@ public interface SpzlMapper {
 			"a.guid as drugid,'1' as is_on_sale,GSPSortID as category from phk a,yw_kck b where a.hh = b.hh and a.sl > 0 and b.bz!='含特殊药品复方制剂' and a.guid = #{id}")
 	public Spbnew getspbnewById(String id);
 
-	@Select("select tjbh as code,mc as name,tel as telephone,qyfzr as linkman,yydz as address,YYZZ as taxnumber,YLJGXKZH as xkzh from gl_custom where YYZZ = #{taxNo} or YLJGXKZH = #{taxNo}")
+	@Select("select tjbh as code,mc as name,tel as telephone,qyfzr as linkman,yydz as address,YYZZ as taxnumber,YLJGXKZH as xkzh from gl_custom where (YYZZ = #{taxNo} or YLJGXKZH = #{taxNo}) and FDELETED=0 and STOPSELL=0")
 	public Custom getCustomerByTaxNo(String taxNo);
 
 	@Insert("insert into jk_xsddhead(APP_DD_ID,ERP_CUSTOM_ID,CREATE_TIME,IS_PAY) values(#{APP_DD_ID},#{ERP_Custom_ID},#{Create_Time},0)")
