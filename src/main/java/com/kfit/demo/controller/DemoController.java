@@ -35,7 +35,7 @@ public class DemoController {
 		return spzlService.SaveOrder(orderDetail);
 	}
 
-	@RequestMapping(value ="/updateOrder", method = RequestMethod.POST)
+	@RequestMapping(value ="/updateOrder", method = RequestMethod.GET)
 	public int updateOrder(@RequestParam String orderId,@RequestParam int status) {
 		return spzlService.updateThirdOrder(orderId,status);
 	}
