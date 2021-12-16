@@ -53,4 +53,13 @@ public class SpzlService {
 		return spzlMappper.GetCustomersCredit();
 	}
 
+	public int updateThirdOrder(String orderId,int status){
+		if(status==3)
+		  return spzlMappper.updateThirdOrderPay(orderId);
+		else if(status==10)
+			return spzlMappper.updateThirdOrderCancel(orderId);
+		else
+			return 0;
+	}
+
 }

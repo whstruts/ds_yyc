@@ -35,6 +35,12 @@ public class DemoController {
 		return spzlService.SaveOrder(orderDetail);
 	}
 
+	@RequestMapping(value ="/updateOrder", method = RequestMethod.POST)
+	public int updateOrder(@RequestParam String orderId,@RequestParam int status) {
+		return spzlService.updateThirdOrder(orderId,status);
+	}
+
+
 	@RequestMapping(value ="/GetCustomersCredit", method = RequestMethod.GET)
 	public List<Custom> GetCustomersCredit() {
 		return spzlService.GetCustomersCredit();

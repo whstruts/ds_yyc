@@ -59,4 +59,8 @@ public class OrderDetails {
      * 订单金额
      */
     String b2b_prom_ordertotal;
+    /**
+     * 订单备注
+     */
+    String Remarks;
 }
