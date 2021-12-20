@@ -8,7 +8,6 @@ public class OrderDetails {
     String order_id;
     List<OrderDetail> data;
     String erpCustomerID;
-    Boolean isPay;
     int countQty;
     Double Total;
     /**
@@ -63,4 +62,13 @@ public class OrderDetails {
      * 订单备注
      */
     String Remarks;
+    /**
+     * 是否支付 1 未支付  2 已支付
+     */
+    String isPay;
+
+    /**
+     * 线下支付金额  APP中 支付方式为 线下支付 2 扫码支付 4
+     */
+    String b2b_offline_pay;
 }

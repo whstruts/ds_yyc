@@ -41,7 +41,6 @@ public class SpzlService {
 			order.setOrderId(orderDetails.getOrder_id());
 			spzlMappper.SaveThirdOrderMX(order);
 		}
-        orderDetails.setIsPay(true);
 		orderDetails.setCountQty(orderDetails.getData().size());
 		orderDetails.setTotal(Double.valueOf(total.toString()));
 
