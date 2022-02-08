@@ -28,7 +28,7 @@ public interface SpzlMapper {
 			"is_on_sale as is_on_sale,category as erp_category from v_ware_b2b_tyt where goods_id_s+'_'+production_batch = #{id} or drugid = #{id}")
 	public List<Spbnew> GetKCByIDNEWX(String id);
 
-	@Select("select erpCustomerID AS code,erpCustomerName AS name,cust_type AS type,taxnumber,categories from v_custom_b2b_tyt where taxnumber = #{taxnumber}")
+	@Select("select erpCustomerID AS code,erpCustomerName AS name,cust_type AS type,taxnumber,categories from v_custom_b2b_tyt where RTRIM(LTRIM(taxnumber)) = #{taxnumber} or erpCustomerID = #{taxnumber}")
 	public List<Custom> GetCustomerByTaxNo(String taxnumber);
 
 	@Select("select erpCustomerID AS code,erpCustomerName AS name,cust_type AS type,taxnumber,categories,a.信用额度 as creditAmount,a.信用天数 as creditDays,a.erpCustomerID from (select * from v_custom_b2b_tyt) a")
