@@ -32,9 +32,9 @@ public class SpzlService {
 		BigDecimal total = new BigDecimal(0);
 		for (OrderDetail order : orderDetails.getData()) {
 			total = total.add(new BigDecimal(order.getDj()).multiply(new BigDecimal(order.getSL())));
-			String[] goods_id = order.getGoods_id_s().split("_");
-			order.setGoods_id_s(goods_id[0]);
-			order.setMakeNo(goods_id[1]);
+//			String[] goods_id = order.getGoods_id_s().split("_");
+//			order.setGoods_id_s(goods_id[0]);
+//			order.setMakeNo(goods_id[1]);
 			order.setSalesVolume(order.getSL());
 			order.setSuppliersPrice(order.getDj());
 			order.setAppPrice(order.getDj());
