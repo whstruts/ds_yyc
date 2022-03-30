@@ -24,7 +24,7 @@ public interface SpzlMapper {
 			" approve_number,specifications,package_unit,medium_package,large_package,is_retail," +
 			" production_batch,date_expiration,repertory,supplier_price,drugid,'华中仓' AS suppliers_name " +
 			" FROM " +
-			" third_commodity_hy")
+			" third_commodity_hy where is_retail = 1")
 	public List<Spbnew> getspbnewHY();
 
 	@Select("SELECT drugid AS goods_sn,ypdm,cddm,jx,scrq,txm,goods_id_s,drug_common_name,manufacturer,appearance,drug_img," +
