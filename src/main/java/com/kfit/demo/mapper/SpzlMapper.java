@@ -49,7 +49,7 @@ public interface SpzlMapper {
 			" and b.batch_id = RIGHT(#{id},7)")
 	public List<Spbnew> GetKCByIDNEWX(String id);
 
-	@Select("select bpartner_id as code,partner_name as name,'' as type,tax_number as taxnumber,'' as categories from ny_bpartners where tax_number = #{taxnumber}")
+	@Select("select bpartner_id as code,partner_name as name,'' as type,tax_number as taxnumber,'' as categories from ny_bpartners where tax_number = #{taxnumber} or bpartner_id = #{taxnumber}")
 	public List<Custom> GetCustomerByTaxNo(String taxnumber);
 
 }
