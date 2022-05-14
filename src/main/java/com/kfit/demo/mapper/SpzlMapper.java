@@ -9,18 +9,34 @@ import java.util.List;
 
 public interface SpzlMapper {
 
-	@Select("select '恒安医药' AS suppliers_name,PM_ZJM as ypdm,a.cd as cddm,jx,CONVERT(varchar(100),a.SCRQ,23) as scrq,"+
-	        "a.guid as goods_id_s,a.hh as goods_sn,pm as drug_common_name,a.scdw as manufacturer,a.PZWH as approve_number,"+
-			"'' as drug_img,GG as specifications,PDW as package_unit,FLOOR(ZBZL) as medium_package,FLOOR(a.mjl) as large_package,'1' as is_retail,"+
-	        "PH as production_batch,CONVERT(varchar(100),a.XQ,23) as date_expiration,a.sl as repertory,b.tm as bar_code,b.sj as supplier_price,"+
-	        "a.guid as drugid,'1' as is_on_sale,GSPSortID as category from phk a,yw_kck b where a.hh = b.hh and a.sl > 0 and b.bz not like '%含特殊药品复方制剂%'")
+	@Select("select  '华中仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn," +
+			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
+			"       '' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
+			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_img as drug_img," +
+			" gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
+			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
+			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
+			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_rd.lmsys where customNo = 'stapp'),3) as supplier_price,goods_id_s as drugid" +
+			"            from hykx_rd.yzy_goods " +
+			"            where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1  " +
+			"            and ((ISRETAIL = 0 and goods_number+1 > bz*2) or (ISRETAIL = 1 and goods_number+1 > bz/2) )  " +
+			"            and CONVERT(bz,DECIMAL) > CONVERT(zbz,DECIMAL) and shop_price > 0  " +
+			"            and  locate('YSBBBC', goods_sn) and pzwh not like '%食%' and jx not like '%消毒%'")
 	public List<Spbnew> getspbnew();
 
-	@Select("select '恒安医药' AS suppliers_name,PM_ZJM as ypdm,a.cd as cddm,jx,CONVERT(varchar(100),a.SCRQ,23) as scrq,"+
-			"a.guid as goods_id_s,a.hh as goods_sn,pm as drug_common_name,a.scdw as manufacturer,a.PZWH as approve_number,"+
-			"'' as drug_img,GG as specifications,PDW as package_unit,ZBZL as medium_package,a.mjl as large_package,'1' as is_retail,"+
-			"PH as production_batch,CONVERT(varchar(100),a.XQ,23) as date_expiration,a.sl as repertory,b.tm as bar_code,b.sj as supplier_price,"+
-			"a.guid as drugid,'1' as is_on_sale,GSPSortID as category from phk a,yw_kck b where a.hh = b.hh and a.sl > 0 and b.bz not like '%含特殊药品复方制剂%' and a.guid = #{id}")
+	@Select("select  '华中仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn, " +
+			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
+			"       '' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
+			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_img as drug_img," +
+			" gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
+			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
+			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
+			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_rd.lmsys where customNo = 'stapp'),3) as supplier_price,goods_id_s as drugid" +
+			"            from hykx_rd.yzy_goods " +
+			"            where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1  " +
+			"            and ((ISRETAIL = 0 and goods_number+1 > bz*2) or (ISRETAIL = 1 and goods_number+1 > bz/2) )  " +
+			"            and CONVERT(bz,DECIMAL) > CONVERT(zbz,DECIMAL) and shop_price > 0  " +
+			"            and  locate('YSBBBC', goods_sn) and pzwh not like '%食%' and jx not like '%消毒%' and goods_id_s = #{id}")
 	public Spbnew getspbnewById(String id);
 
 	@Select("select tjbh as code,mc as name,tel as telephone,qyfzr as linkman,yydz as address,YYZZ as taxnumber,YLJGXKZH as xkzh from gl_custom where (YYZZ = #{taxNo} or YLJGXKZH = #{taxNo}) and FDELETED=0 and STOPSELL=0")
