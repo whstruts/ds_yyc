@@ -12,7 +12,7 @@ public interface SpzlMapper {
 	@Select("select  '华中仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn," +
 			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"       '' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
-			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_img as drug_img," +
+			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_thumb as drug_img," +
 			" gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
 			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
@@ -27,7 +27,7 @@ public interface SpzlMapper {
 	@Select("select  '华中仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn, " +
 			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"       '' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
-			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_img as drug_img," +
+			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,goods_thumb as drug_img," +
 			" gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
 			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
