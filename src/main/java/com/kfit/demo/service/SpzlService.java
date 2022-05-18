@@ -27,6 +27,11 @@ public class SpzlService {
 	public void UpdateOrderStatusByID(String id) {
 		spzlMappper.UpdateOrderStatusByID(id);
 	}
+
+	public void DeleteOrderByID(String id) {
+		spzlMappper.DeleteMX(id);
+		spzlMappper.DeleteHZ(id);
+	}
 	@Transactional(rollbackFor = Exception.class)
 	public String saveOrder(String order){
 		OrderDetails orderDetails = JSONObject.parseObject(order,OrderDetails.class);

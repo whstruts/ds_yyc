@@ -1,6 +1,7 @@
 package com.kfit.demo.mapper;
 
 import com.kfit.demo.bean.*;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
@@ -34,5 +35,11 @@ public interface SpzlMapper {
 
 	@Update("update jk_xsddhead set IS_PAY = 1 where APP_DD_ID = #{id}")
 	public void UpdateOrderStatusByID(String id);
+
+	@Delete("delete jk_xsdd  where APP_DD_ID = #{id}")
+	public void DeleteMX(String id);
+
+	@Delete("delete jk_xsddhead  where APP_DD_ID = #{id}")
+	public void DeleteHZ(String id);
 
 }

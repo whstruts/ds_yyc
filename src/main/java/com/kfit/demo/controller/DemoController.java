@@ -31,6 +31,11 @@ public class DemoController {
 		spzlService.UpdateOrderStatusByID(id);
 	}
 
+	@RequestMapping("/DeleteOrderByID")
+	public void DeleteOrderByID(@RequestParam("id") @NotEmpty(message = "订单ID为空") String id) {
+		spzlService.DeleteOrderByID(id);
+	}
+
 	@RequestMapping("/getCustomerByTaxNo")
 	public Custom getCustomerByTaxNo(@RequestParam("taxNo") @NotEmpty(message = "税号为空") String taxNo) {
 		return spzlService.getCustomerByTaxNo(taxNo);
