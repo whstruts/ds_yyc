@@ -16,10 +16,16 @@ public class SpzlService {
 	private SpzlMapper spzlMappper;
 
 	public List<Spbnew> getspbnew() {
-		return spzlMappper.getspbnew();
+		List<Spbnew> list = spzlMappper.getspbnew();
+		list.addAll(spzlMappper.getspbnewst());
+		return list;
 	}
 	public Spbnew getspbnewById(String id) {
-		return spzlMappper.getspbnewById(id);
+		if (spzlMappper.getspbnewById(id)==null)
+			return spzlMappper.getspbnewstById(id);
+		else
+			return spzlMappper.getspbnewById(id);
+
 	}
 	public Custom getCustomerByTaxNo(String taxNo) {
 		return spzlMappper.getCustomerByTaxNo(taxNo);
