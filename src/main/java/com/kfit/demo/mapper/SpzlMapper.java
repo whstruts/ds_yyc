@@ -35,7 +35,7 @@ public interface SpzlMapper {
 			" where Goods_id_s = #{id}"+
 	        " union" +
 			" SELECT CONCAT(b.product_id,b.batch_id) as goods_sn,a.search_code as ypdm,'' as cddm,a.medicine_style as jx,b.production_date as scrq, '' as txm ,a.product_id as  goods_id_s, " +
-			" a.product_name as  drug_common_name,a.manufacturer as manufacturer,'' as appearance,'' as drug_img,a.medicine_spec as specifications,a.uom as package_unit,a.small_package as medium_package," +
+			" a.product_name as  drug_common_name,a.manufacturer as manufacturer,'' as appearance,'' as drug_img,a.medicine_spec as specifications,a.uom as package_unit,if(a.small_package=0,1,a.small_package) as medium_package," +
 			" a.certificate_no as approve_number,a.large_package,1 as is_retail,b.lot as production_batch,b.production_date as date_expiration," +
 			" c.stock_qty as repertory, " +
 			" b.price_po as supplier_price, " +
