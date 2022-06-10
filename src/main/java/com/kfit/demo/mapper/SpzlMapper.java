@@ -54,10 +54,10 @@ public interface SpzlMapper {
 	@Select("select danwbh as code,trim(dwmch) as name,'' as telephone,lxr as linkman,trim(dzhdh) as address,yhzhh as taxnumber,xvkz as xkzh from hykx_rd.mchk where danwbh = #{taxNo} or yhzhh = #{taxNo} or xvkz = #{taxNo}")
 	public Custom getCustomerByTaxNo(String taxNo);
 
-	@Insert("insert into jk_xsddhead(APP_DD_ID,ERP_CUSTOM_ID,CREATE_TIME,IS_PAY) values(#{APP_DD_ID},#{ERP_Custom_ID},#{Create_Time},0)")
+	@Insert("insert into hykx_rd.jk_xsddhead(APP_DD_ID,ERP_CUSTOM_ID,CREATE_TIME,IS_PAY,DD_HJ) values(#{APP_DD_ID},#{ERP_Custom_ID},#{Create_Time},0,#{DD_HJ})")
 	void insertHZ(DDHZ ddhz);
 
-	@Insert("insert into jk_xsdd(APP_DD_ID,MX_ID,ERP_SP_ID,ERP_SP_DJ,ERP_SP_SL) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_DJ},#{ERP_SP_SL})")
+	@Insert("insert into hykx_rd.jk_xsdd(APP_DD_ID,MX_ID,ERP_SP_ID,ERP_SP_DJ,ERP_SP_SL) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_DJ},#{ERP_SP_SL})")
 	void insertMX(DDMX ddmx);
 
 	@Update("update jk_xsddhead set IS_PAY = 1 where APP_DD_ID = #{id}")
