@@ -26,6 +26,14 @@ public class SpzlService {
 	public List<Spbnew> getspbnew() {
 		return spzlMappper.getspbnew();
 	}
+
+	public List<Spbnew> GetKCByIDNEWX(String id) {
+		return spzlMappper.GetKCByIDNEWX(id);
+	}
+
+	public List<Spbnew> getspbnewst() {
+		return spzlMappper.getspbnewst();
+	}
 	public List<Spbnew> getspbnewzy() {
 		return spzlMappper.getspbnewzy();
 	}

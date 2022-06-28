@@ -45,6 +45,18 @@ public interface SpzlMapper {
 			" and (shop_price > 0 and is_on_sale = 1 and is_delete = 0)" )
 	public List<Spbnew> getspbnew();
 
+	@Select("SELECT 'ST仓' as suppliers_name,zjm as YPDM,jixing as JX, min(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
+			"drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
+			"'1' as is_retail,batchNum as production_batch,validity as date_expiration,stock as repertory,price as supplier_price,inCode as drugid " +
+			"FROM hykx_rd.st2yngoods where price > 0 and isdesc = '否' GROUP BY inCode")
+	public List<Spbnew> getspbnewst();
+
+	@Select("SELECT 'ST仓' as suppliers_name,zjm as YPDM,jixing as JX, min(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
+			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
+			" '1' as is_retail,batchNum as production_batch,validity as date_expiration,stock as repertory,price as supplier_price,inCode as drugid " +
+			" FROM hykx_rd.st2yngoods where price > 0 and isdesc = '否' and (inCode = #{id} or drugCode = #{id}) GROUP BY inCode ")
+	public List<Spbnew> GetKCByIDNEWX(String id);
+
 	@Select("select ypdm,cddm,jx,scrq,txm,case when isnull(goods_id_s) then goods_sn else goods_id_s end as goods_id_s,goods_sn," +
 			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"'' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
@@ -71,6 +83,12 @@ public interface SpzlMapper {
 			"where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1   " +
 			"and goods_sn like 'YMD%' and cast(bz as signed) > cast(zbz as signed)  and shop_price > 0 " )
 	public List<Spbnew> getspbnewymd();
+
+	@Select("SELECT 'ST仓' as suppliers_name,zjm as YPDM,jixing as JX, min(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
+			"drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
+			"'1' as is_retail,batchNum as production_batch,validity as date_expiration,stock as repertory,price as supplier_price,inCode as drugid " +
+			"FROM hykx_rd.st2yngoods where price > 0 and isdesc = '否' and (inCode = #{id} or drugCode = #{id})  GROUP BY inCode ")
+	public Spbnew getspbnewstById(String id);
 
 	@Select("select goods_id as g_in_sn,goods_id as gb_id_no,'' as gb_ku_no,'' as gb_hw_no,ph as gb_batch_no," +
 			"yxq as gb_end_time, goods_number as gb_number from yzy_goods " +

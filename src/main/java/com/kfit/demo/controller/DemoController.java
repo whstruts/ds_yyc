@@ -86,6 +86,16 @@ public class DemoController {
 		return spzlService.getspbnew();
 	}
 
+	@RequestMapping("/getspbnewst")
+	public List<Spbnew> getspbnewst() {
+		return spzlService.getspbnewst();
+	}
+
+	@RequestMapping(value ="/GetKCByIDNEWX", method = RequestMethod.GET)
+	public List<Spbnew> GetKCByIDNEWX(@RequestParam String id) {
+		return spzlService.GetKCByIDNEWX(id);
+	}
+
 	@RequestMapping("/getspbnewzy")
 	public List<Spbnew> getspbnewzy() {
 		/*
