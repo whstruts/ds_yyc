@@ -45,13 +45,13 @@ public interface SpzlMapper {
 			" and (shop_price > 0 and is_on_sale = 1 and is_delete = 0)" )
 	public List<Spbnew> getspbnew();
 
-	@Select("SELECT 'ST仓' as suppliers_name,zjm as YPDM,jixing as JX, min(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
+	@Select("SELECT 'ST仓' as suppliers_name,zjm as YPDM,jixing as JX, max(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
 			"drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
 			"'1' as is_retail,batchNum as production_batch,validity as date_expiration,stock as repertory,price as supplier_price,inCode as drugid " +
 			"FROM hykx_rd.st2yngoods where price > 0 and isdesc = '否' GROUP BY inCode")
 	public List<Spbnew> getspbnewst();
 
-	@Select("SELECT 'ST仓' as suppliers_name,zjm as YPDM,jixing as JX, min(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
+	@Select("SELECT 'ST仓' as suppliers_name,zjm as YPDM,jixing as JX, max(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
 			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
 			" '1' as is_retail,batchNum as production_batch,validity as date_expiration,stock as repertory,price as supplier_price,inCode as drugid " +
 			" FROM hykx_rd.st2yngoods where price > 0 and isdesc = '否' and (inCode = #{id} or drugCode = #{id}) GROUP BY inCode ")
