@@ -55,7 +55,7 @@ public class SpzlService {
 		ddhz.setERP_Custom_ID(orderDetails.getErpCustomerID());
 		ddhz.setDD_HJ(hj);
 		intsertHZ(ddhz);
-		return String.valueOf(hj);
+		return "订单保存成功:总金额 " + String.valueOf(hj) + " 元";
 	}
 
     public void intsertHZ(DDHZ ddhz){

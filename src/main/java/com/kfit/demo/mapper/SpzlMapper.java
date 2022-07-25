@@ -26,7 +26,7 @@ public interface SpzlMapper {
 
 	@Select("SELECT '森涛医药' as suppliers_name,zjm as YPDM,jixing as JX, MAX(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
 			"drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
-			"'1' as is_retail,MAX(batchNu) as production_batch,MAX(validity) as date_expiration,stock as repertory,price as supplier_price,inCode as drugid " +
+			"'1' as is_retail,MAX(batchNum) as production_batch,MAX(validity) as date_expiration,stock as repertory,price as supplier_price,inCode as drugid " +
 			"FROM hykx_rd.stgoods where price > 0 and isdesc = '否' GROUP BY inCode")
 	public List<Spbnew> getspbnewst();
 
