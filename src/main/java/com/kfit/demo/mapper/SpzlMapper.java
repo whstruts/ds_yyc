@@ -17,10 +17,11 @@ public interface SpzlMapper {
 			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
 			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_rd.lmsys where customNo = 'stapp'),3) as supplier_price,goods_id_s as drugid" +
-			"            from hykx_rd.yzy_goods " +
+			"            from hykx_rd.yzy_goods g " +
 			"            where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1  " +
 			"            and ((ISRETAIL = 0 and goods_number+1 > bz*2) or (ISRETAIL = 1 and goods_number+1 > bz/2) )  " +
 			"            and CONVERT(bz,DECIMAL) > CONVERT(zbz,DECIMAL) and shop_price > 0  " +
+			"            and NOT EXISTS (select * from hykx_rd.lmsys_pzwh b where g.PZWH = b.pzwh) " +
 			"            and  locate('YSBBBC', goods_sn) and pzwh not like '%食%' and jx not like '%消毒%'")
 	public List<Spbnew> getspbnew();
 
@@ -38,10 +39,11 @@ public interface SpzlMapper {
 			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
 			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_rd.lmsys where customNo = 'stapp'),3) as supplier_price,goods_id_s as drugid" +
-			"            from hykx_rd.yzy_goods " +
+			"            from hykx_rd.yzy_goods g " +
 			"            where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1  " +
 			"            and ((ISRETAIL = 0 and goods_number+1 > bz*2) or (ISRETAIL = 1 and goods_number+1 > bz/2) )  " +
 			"            and CONVERT(bz,DECIMAL) > CONVERT(zbz,DECIMAL) and shop_price > 0  " +
+			"            and NOT EXISTS (select * from hykx_rd.lmsys_pzwh b where g.PZWH = b.pzwh) " +
 			"            and  locate('YSBBBC', goods_sn) and pzwh not like '%食%' and jx not like '%消毒%' and goods_id_s = #{id}")
 	public Spbnew getspbnewById(String id);
 
