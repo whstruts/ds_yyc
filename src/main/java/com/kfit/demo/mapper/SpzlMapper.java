@@ -22,7 +22,11 @@ public interface SpzlMapper {
 
 	@Select("SELECT drugid AS goods_sn,ypdm,cddm,jx,scrq,txm,goods_id_s,drug_common_name,manufacturer,appearance,drug_img," +
 			" approve_number,specifications,package_unit,medium_package,large_package,is_retail," +
-			" production_batch,date_expiration,repertory,supplier_price,drugid,'华中仓' AS suppliers_name " +
+			" production_batch,date_expiration,repertory,case when supplier_price BETWEEN (select min from lmsys_seg where customNo = 'nyes1') AND (select max from lmsys_seg where customNo = 'nyes1') THEN supplier_price*(select markUp from lmsys_seg where customNo = 'nyes1') \n" +
+			" when supplier_price BETWEEN (select min from lmsys_seg where customNo = 'nyes2') AND (select max from lmsys_seg where customNo = 'nyes2') THEN supplier_price*(select markUp from lmsys_seg where customNo = 'nyes2') " +
+			" when supplier_price BETWEEN (select min from lmsys_seg where customNo = 'nyes3') AND (select max from lmsys_seg where customNo = 'nyes3') THEN supplier_price*(select markUp from lmsys_seg where customNo = 'nyes3') " +
+			" when supplier_price BETWEEN (select min from lmsys_seg where customNo = 'nyes4') AND (select max from lmsys_seg where customNo = 'nyes4') THEN supplier_price*(select markUp from lmsys_seg where customNo = 'nyes4') " +
+			" else supplier_price end as supplier_price ,drugid,'华中仓' AS suppliers_name " +
 			" FROM " +
 			" third_commodity_hy where is_retail = 1")
 	public List<Spbnew> getspbnewHY();
