@@ -21,11 +21,7 @@ public class SpzlService {
 		return list;
 	}
 	public Spbnew getspbnewById(String id) {
-		if (spzlMappper.getspbnewById(id)==null)
-			return spzlMappper.getspbnewstById(id);
-		else
-			return spzlMappper.getspbnewById(id);
-
+		return spzlMappper.getspbnewById(id);
 	}
 	public Custom getCustomerByTaxNo(String taxNo) {
 		return spzlMappper.getCustomerByTaxNo(taxNo);
