@@ -16,7 +16,7 @@ public interface SpzlMapper {
 			" gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
 			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
-			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_rd.lmsys where customNo = 'stapp'),3) as supplier_price,goods_id_s as drugid" +
+			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_rd.lmsys where customNo = 'thapp'),3) as supplier_price,goods_id_s as drugid" +
 			"            from hykx_rd.yzy_goods g " +
 			"            where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1  " +
 			"            and ((ISRETAIL = 0 and goods_number+1 > bz*2) or (ISRETAIL = 1 and goods_number+1 > bz/2) )  " +
@@ -38,7 +38,7 @@ public interface SpzlMapper {
 			" gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
 			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
 			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,txm as bar_code," +
-			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_rd.lmsys where customNo = 'stapp'),3) as supplier_price,goods_id_s as drugid" +
+			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_rd.lmsys where customNo = 'thapp'),3) as supplier_price,goods_id_s as drugid" +
 			"            from hykx_rd.yzy_goods g " +
 			"            where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1  " +
 			"            and ((ISRETAIL = 0 and goods_number+1 > bz*2) or (ISRETAIL = 1 and goods_number+1 > bz/2) )  " +
