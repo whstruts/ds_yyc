@@ -17,7 +17,7 @@ public class SpzlService {
 
 	public List<Spbnew> getspbnew() {
 		List<Spbnew> list = spzlMappper.getspbnew();
-		list.addAll(spzlMappper.getspbnewst());
+		//list.addAll(spzlMappper.getspbnewst());
 		return list;
 	}
 	public Spbnew getspbnewById(String id) {
