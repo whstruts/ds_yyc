@@ -17,11 +17,15 @@ public class SpzlService {
 
 	public List<Spbnew> getspbnew() {
 		List<Spbnew> list = spzlMappper.getspbnew();
-		//list.addAll(spzlMappper.getspbnewst());
+		list.addAll(spzlMappper.getspbnewst());
 		return list;
 	}
 	public Spbnew getspbnewById(String id) {
-		return spzlMappper.getspbnewById(id);
+		if (spzlMappper.getspbnewById(id)==null)
+			return spzlMappper.getspbnewstById(id);
+		else
+			return spzlMappper.getspbnewById(id);
+
 	}
 	public Custom getCustomerByTaxNo(String taxNo) {
 		return spzlMappper.getCustomerByTaxNo(taxNo);
