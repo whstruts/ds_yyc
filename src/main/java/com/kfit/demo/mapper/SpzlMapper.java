@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface SpzlMapper {
 
-	@Select("select  '华中仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn," +
+	@Select("select  '泰衡仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn," +
 			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"       '' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
 			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,REPLACE(REPLACE(goods_thumb,\"**\",\"/\"),\"good\",\"http://www.hyey.cn/uploadpic/600\") as drug_img," +
@@ -31,7 +31,7 @@ public interface SpzlMapper {
 			" FROM hykx_rd.thgoods where price > 0 ")
 	public List<Spbnew> getspbnewst();
 
-	@Select("select  '华中仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn, " +
+	@Select("select  '泰衡仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn, " +
 			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"       '' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
 			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,REPLACE(REPLACE(goods_thumb,\"**\",\"/\"),\"good\",\"http://www.hyey.cn/uploadpic/600\") as drug_img," +
