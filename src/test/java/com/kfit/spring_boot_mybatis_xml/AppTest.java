@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.util.Random;
+
 /**
  * Unit test for simple App.
  */
@@ -18,7 +20,14 @@ public class AppTest
     public AppTest( String testName )
     {
         super( testName );
+        int x = getOrderNo();
       //  ExportExcelUtils.batchSnycTestceshi();
+    }
+
+    private int getOrderNo()
+    {
+        Random random = new Random();
+        return random.nextInt(500000000) + 400000000;
     }
 
     /**

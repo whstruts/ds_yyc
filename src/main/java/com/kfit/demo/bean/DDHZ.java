@@ -11,4 +11,5 @@ public class DDHZ {
     Date Create_Time;
     double DD_HJ;
     boolean IS_PAY;
+    String djbh;
 }

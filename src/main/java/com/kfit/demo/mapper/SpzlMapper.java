@@ -53,10 +53,12 @@ public interface SpzlMapper {
 			" FROM hykx_rd.thgoods where price > 0 and inCode = #{id} ")
 	public Spbnew getspbnewstById(String id);
 
-	@Select("select danwbh as code,trim(dwmch) as name,'' as telephone,lxr as linkman,trim(dzhdh) as address,yhzhh as taxnumber,xvkz as xkzh from hykx_rd.mchk where danwbh = #{taxNo} or yhzhh = #{taxNo} or xvkz = #{taxNo}")
+	@Select("select custid as code,trim(custname) as name,contactphone as telephone,contactperson as linkman,address,taxno as taxnumber " +
+			"from hykx_rd.customer_erp " +
+			"where custid = #{taxNo} or licenceno = #{taxNo} or taxno = #{taxNo}")
 	public Custom getCustomerByTaxNo(String taxNo);
 
-	@Insert("insert into hykx_rd.jk_xsddhead(APP_DD_ID,ERP_CUSTOM_ID,CREATE_TIME,IS_PAY,DD_HJ) values(#{APP_DD_ID},#{ERP_Custom_ID},#{Create_Time},0,#{DD_HJ})")
+	@Insert("insert into hykx_rd.jk_xsddhead(APP_DD_ID,ERP_CUSTOM_ID,CREATE_TIME,IS_PAY,DD_HJ,djbh) values(#{APP_DD_ID},#{ERP_Custom_ID},#{Create_Time},0,#{DD_HJ},#{djbh})")
 	void insertHZ(DDHZ ddhz);
 
 	@Insert("insert into hykx_rd.jk_xsdd(APP_DD_ID,MX_ID,ERP_SP_ID,ERP_SP_DJ,ERP_SP_SL) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_DJ},#{ERP_SP_SL})")

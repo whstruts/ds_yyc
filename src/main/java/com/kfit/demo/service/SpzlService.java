@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+
 @Service
 public class SpzlService {
 
@@ -54,8 +56,15 @@ public class SpzlService {
 		ddhz.setCreate_Time(new Date());
 		ddhz.setERP_Custom_ID(orderDetails.getErpCustomerID());
 		ddhz.setDD_HJ(hj);
+		ddhz.setDjbh(String.valueOf(getOrderNo()));
 		intsertHZ(ddhz);
 		return "订单保存成功:总金额 " + String.valueOf(hj) + " 元";
+	}
+
+	private int getOrderNo()
+	{
+		Random random = new Random();
+		return random.nextInt(500000000) + 400000000;
 	}
 
     public void intsertHZ(DDHZ ddhz){
