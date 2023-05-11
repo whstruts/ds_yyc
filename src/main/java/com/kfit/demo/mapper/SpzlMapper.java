@@ -25,11 +25,11 @@ public interface SpzlMapper {
 			"            and  locate('YSBBBC', goods_sn) and pzwh not like '%食%' and jx not like '%消毒%'")
 	public List<Spbnew> getspbnew();
 
-	@Select("SELECT '泰衡医药' as suppliers_name,'' as YPDM,'' as JX, prodDate as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
+	@Select("SELECT '泰衡医药' as suppliers_name,'' as YPDM,'' as JX, max(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
 			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
 			" '1' as is_retail,GROUP_CONCAT(batchNum) as production_batch,max(validity) as date_expiration,sum(stock) as repertory,price as supplier_price,drugCode as drugid " +
 			" FROM hykx_rd.thgoods where price > 0 " +
-			" group by drugCode ")
+			" group by drugCode")
 	public List<Spbnew> getspbnewst();
 
 	@Select("select  '泰衡仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn, " +
