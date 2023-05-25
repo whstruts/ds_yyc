@@ -28,7 +28,7 @@ public interface SpzlMapper {
 	@Select("SELECT '泰衡医药' as suppliers_name,'' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
 			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
 			" '1' as is_retail,GROUP_CONCAT(batchNum) as production_batch,min(validity) as date_expiration,sum(stock) as repertory,price as supplier_price,drugCode as drugid " +
-			" FROM hykx_rd.thgoods where price > 0 " +
+			" FROM hykx_rd.thgoods where price > 0  and stock >0 " +
 			" group by drugCode")
 	public List<Spbnew> getspbnewst();
 
