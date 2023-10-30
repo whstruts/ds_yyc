@@ -27,6 +27,10 @@ public class SpzlService {
 		return spzlMappper.getspbnew();
 	}
 
+	public List<MyGoodsEntity> getHYGoods() {
+		return spzlMappper.getHYGoods();
+	}
+
 	public List<Spbnew> GetKCByIDNEWX(String id) {
 		return spzlMappper.GetKCByIDNEWX(id);
 	}
