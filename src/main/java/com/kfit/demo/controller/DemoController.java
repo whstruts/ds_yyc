@@ -200,15 +200,18 @@ public class DemoController {
 	@CrossOrigin
 	@RequestMapping("/GetYSBDDByUserName")
 	public R GetYSBDDByUserName(@RequestParam("userName") String userName,@RequestParam("status") int status){
-		List<ysbddhz> listysbddhz = spzlService.getysbddhzs(userName,status);
+		ysbddhz hz = new ysbddhz();
+		hz.setUserName(userName);
+		hz.setIs_run(status);
+		List<ysbddhz> listysbddhz = spzlService.getysbddhzs(hz);
 		List<ysbdd> listdd = new ArrayList<ysbdd>();
 		for (int i = 0; i < listysbddhz.size(); i++) {
 			ysbddhz ddhz = listysbddhz.get(i);
-			List<ysbddmx> listDDMX = spzlService.getysbddmxbydjbh(ddhz.getDjbh());
+			List<ysbddmx> listDDMX = spzlService.getysbddmxbydjbh(ddhz.getWebdjbh());
 			ysbdd dd = new ysbdd();
 			if (listDDMX.size() > 0) {
-				ddhz.setIs_run(1);
-				spzlService.updateysbddhz(ddhz.getDjbh());
+				ddhz.setIs_run(status+1);
+				spzlService.updateysbddhz(ddhz);
 				dd.setYsbddhz(ddhz);
 				dd.setYsbddmxes(listDDMX);
 				listdd.add(dd);

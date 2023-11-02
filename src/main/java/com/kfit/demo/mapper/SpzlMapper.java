@@ -208,13 +208,14 @@ public interface SpzlMapper {
 	void YYW_AddHZ();
 
 	@Select("select i.order_id as webdjbh,djbh,rq,ontime,customerId,status,je,xgdjbh,beizhu,is_run,customerName" +
-			" from huayuanyyn.yzy_order_info i,hykx.ysb_ddhz h where h.djbh = i.hyds_ddid and i.is_to_erp = #{status} and h.userName = #{userName}")
-	public List<ysbddhz> getysbddhzs(String userName,int status);
+			" from huayuanyyn.yzy_order_info i,hykx.ysb_ddhz h where h.djbh = i.hyds_ddid and i.is_to_erp = #{is_run} and h.userName = #{userName}")
+	public List<ysbddhz> getysbddhzs(ysbddhz hz);
 
-	@Select("select goods_id,goods_name,goods_number,ypdm,cdmc,gg,txm,shop_price,dw,jx,pzwh,bz,zbz,yxq,ph,isretail,pch,scrq from yzy_goods where goods_id = #{goods_id}")
+	@Select("select m.*,g.goods_price_cg*1.06 as cgdj,g.goods_number*goods_price_cg*1.06 as cgje,g.lock_bzh as  beizhu from huayuanyyn.yzy_order_info i,hykx.ysb_ddmx m,huayuanyyn.yzy_order_goods g " +
+			" where m.djbh = i.hyds_ddid and i.order_id = #{djbh} and i.order_id = g.order_id")
 	public List<ysbddmx> getysbddmxbydjbh(String djbh);
 
-	@Update("update huayuanyyn.yzy_order_info set is_to_erp = 2 where hyds_ddid = #{djbh}")
-	void updateysbddhz(String djbh);
+	@Update("update huayuanyyn.yzy_order_info set is_to_erp = #{is_run} where hyds_ddid = #{djbh}")
+	void updateysbddhz(ysbddhz hz);
 
 }

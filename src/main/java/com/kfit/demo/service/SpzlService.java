@@ -75,8 +75,8 @@ public class SpzlService {
 	}
 	public List<Spzl> getysbspnew(String sdate) {return  spzlMappper.getysbnew(sdate);}
 
-	public List<ysbddhz> getysbddhzs(String userName,int status) {return  spzlMappper.getysbddhzs(userName,status);}
+	public List<ysbddhz> getysbddhzs(ysbddhz hz) {return  spzlMappper.getysbddhzs(hz);}
 
 	public List<ysbddmx> getysbddmxbydjbh(String djbh) {return  spzlMappper.getysbddmxbydjbh(djbh);}
-	public void updateysbddhz(String djbh){spzlMappper.updateysbddhz(djbh);}
+	public void updateysbddhz(ysbddhz hz){spzlMappper.updateysbddhz(hz);}
 }
