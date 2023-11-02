@@ -3,6 +3,7 @@ package com.kfit.demo.mapper;
 import com.kfit.demo.bean.*;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 import java.util.Map;
@@ -205,5 +206,15 @@ public interface SpzlMapper {
 
 	@Select("call YYW_AddHZ() ")
 	void YYW_AddHZ();
+
+	@Select("select i.order_id as webdjbh,djbh,rq,ontime,customerId,status,je,xgdjbh,beizhu,is_run,customerName" +
+			" from huayuanyyn.yzy_order_info i,hykx.ysb_ddhz h where h.djbh = i.hyds_ddid and i.is_to_erp = #{status} and h.userName = #{userName}")
+	public List<ysbddhz> getysbddhzs(String userName,int status);
+
+	@Select("select goods_id,goods_name,goods_number,ypdm,cdmc,gg,txm,shop_price,dw,jx,pzwh,bz,zbz,yxq,ph,isretail,pch,scrq from yzy_goods where goods_id = #{goods_id}")
+	public List<ysbddmx> getysbddmxbydjbh(String djbh);
+
+	@Update("update huayuanyyn.yzy_order_info set is_to_erp = 2 where hyds_ddid = #{djbh}")
+	void updateysbddhz(String djbh);
 
 }

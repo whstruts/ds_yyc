@@ -2,12 +2,14 @@ package com.kfit.demo.controller;
 
 import java.io.BufferedInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.kfit.demo.bean.*;
 import com.kfit.demo.service.SpzlService;
+import com.kfit.demo.tools.R;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -194,5 +196,26 @@ public class DemoController {
 		user.setName("老王");
 		return user;
 	}
+	@ResponseBody
+	@CrossOrigin
+	@RequestMapping("/GetYSBDDByUserName")
+	public R GetYSBDDByUserName(@RequestParam("userName") String userName,@RequestParam("status") int status){
+		List<ysbddhz> listysbddhz = spzlService.getysbddhzs(userName,status);
+		List<ysbdd> listdd = new ArrayList<ysbdd>();
+		for (int i = 0; i < listysbddhz.size(); i++) {
+			ysbddhz ddhz = listysbddhz.get(i);
+			List<ysbddmx> listDDMX = spzlService.getysbddmxbydjbh(ddhz.getDjbh());
+			ysbdd dd = new ysbdd();
+			if (listDDMX.size() > 0) {
+				ddhz.setIs_run(1);
+				spzlService.updateysbddhz(ddhz.getDjbh());
+				dd.setYsbddhz(ddhz);
+				dd.setYsbddmxes(listDDMX);
+				listdd.add(dd);
+			}
+		}
+		return  R.ok().put("data", listdd);
+	}
+
 }
 
