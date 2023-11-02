@@ -207,7 +207,7 @@ public interface SpzlMapper {
 	@Select("call YYW_AddHZ() ")
 	void YYW_AddHZ();
 
-	@Select("select i.order_id as webdjbh,djbh,rq,ontime,customerId,status,je,xgdjbh,beizhu,is_run,customerName" +
+	@Select("select i.order_id as webdjbh,djbh,rq,ontime,customerId,status,je,i.ahhy_ddid as hydjbh,beizhu,is_run,customerName" +
 			" from huayuanyyn.yzy_order_info i,hykx.ysb_ddhz h where h.djbh = i.hyds_ddid and i.is_to_erp = #{is_run} and h.userName = #{userName}")
 	public List<ysbddhz> getysbddhzs(ysbddhz hz);
 
