@@ -60,18 +60,20 @@ public interface SpzlMapper {
 			"  and LENGTH(goods_id_s) = 36" )
 	public List<MyGoodsEntity> getHYGoods();
 
-	@Select("select goods_sn,case when isnull(goods_id_s) then goods_sn else goods_id_s end as id,ISRETAIL as isretail,g.ypbh,goods_name as ypmc, cdmc,cdmc as drugowner, " +
-			"      gg,bz,zbz,ph,pch,yxq,goods_number as sl, market_price as lsj,TRUNCATE(DJ*ZK,2) as dj,dw,jx,0.13 as zzssl,pzwh,'' as ck,'' as ghdwlb, " +
-			" case when goods_sn like 'YYN%' or goods_sn like 'NYY%' then CONCAT('http://www.hbyyn.com/',goods_img) else goods_img end as imgurl,txm as tm, " +
-			"      ypdm,cddm,cddm as drugownercode,scrq,is_on_sale as isonsale,FROM_UNIXTIME(add_time) as updatedate " +
-			" from yzy_goods g left JOIN yzy_suppliers s on  " +
-			" g.suppliers_id = s.suppliers_id  " +
-			"  where ((RPAD(YXQ,10,'-15') >sysdate()     " +
-			"  and ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2))  " +
-			"  and goods_sn like 'HYYP%' and cast(bz as signed) > cast(zbz as signed)))  " +
-			"  and (shop_price > 0 and is_on_sale = 1 and is_delete = 0)  " +
-			"  and LENGTH(goods_id_s) = 36 group by ypbh" )
-	public List<MyGoodsEntity> getHYGoodsP();
+	@Select("select goods_sn,case when isnull(goods_id_s) then goods_sn else goods_id_s end as id,ISRETAIL as isretail,g.ypbh,goods_name as ypmc, cdmc,cdmc as drugowner,  " +
+			" TRUNCATE(max(DJ)*ZK*1.06*(select markup from hykx.lmsys_seg b where g.dj > b.min and g.dj <= b.max and customNo = #{customNo}),2) as dj, " +
+			" dw,jx,0.13 as zzssl,pzwh,'' as ck,'' as ghdwlb,  " +
+			"  case when goods_sn like 'YYN%' or goods_sn like 'NYY%' then CONCAT('http://www.hbyyn.com/',goods_img) else goods_img end as imgurl,txm as tm,  " +
+			"       ypdm,cddm,cddm as drugownercode,scrq,is_on_sale as isonsale,FROM_UNIXTIME(add_time) as updatedate  " +
+			"  from yzy_goods g left JOIN yzy_suppliers s on   " +
+			"  g.suppliers_id = s.suppliers_id  " +
+			"  where ((RPAD(YXQ,10,'-15') >sysdate()      " +
+			"   and ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2))   " +
+			"   and goods_sn like 'HYYP%' and cast(bz as signed) > cast(zbz as signed)))   " +
+			"   and (shop_price > 0 and is_on_sale = 1 and is_delete = 0)   " +
+			" and not EXISTS (select * from hykx.lmsys_pzwh b where g.PZWH = b.pzwh) " +
+			"   and LENGTH(goods_id_s) = 36 group by ypbh" )
+	public List<MyGoodsEntity> getHYGoodsP(String customNo);
 
 	@Select("SELECT 'ST仓' as suppliers_name,zjm as YPDM,jixing as JX, MAX(prodDate) as scrq,barcode as txm, inCode as goods_id_s,drugCode as goods_sn, " +
 			"drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +

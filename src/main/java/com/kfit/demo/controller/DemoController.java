@@ -99,13 +99,13 @@ public class DemoController {
 	}
 
 	@RequestMapping("/getHYGoodsP")
-	public List<MyGoodsEntity> getHYGoodsP() {
+	public List<MyGoodsEntity> getHYGoodsP(@RequestParam String customNo) {
 		/*
 		 * 第一个参数：第几页;
 		 * 第二个参数：每页获取的条数.
 		 */
 		//	PageHelper.startPage(1, 2);
-		return spzlService.getHYGoodsP();
+		return spzlService.getHYGoodsP(customNo);
 	}
 
 	@RequestMapping("/getspbnewst")
