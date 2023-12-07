@@ -19,14 +19,14 @@ public class SpzlService {
 
 	public List<Spbnew> getspbnew() {
 		List<Spbnew> list = spzlMappper.getspbnew();
-		list.addAll(spzlMappper.getspbnewst());
+//		list.addAll(spzlMappper.getspbnewst());
 //		List<Spbnew> list = spzlMappper.getspbnewst();
 		return list;
 	}
 	public Spbnew getspbnewById(String id) {
-		if (spzlMappper.getspbnewById(id)==null)
-			return spzlMappper.getspbnewstById(id);
-		else
+//		if (spzlMappper.getspbnewById(id)==null)
+//			return spzlMappper.getspbnewstById(id);
+//		else
 			return spzlMappper.getspbnewById(id);
 
 	}
