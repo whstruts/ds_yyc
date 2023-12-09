@@ -43,7 +43,7 @@ public interface SpzlMapper {
 			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,TRIM(txm) as bar_code," +
 			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_jxty.lmsys where customNo = 'thapp'),3) as supplier_price,goods_id_s as drugid" +
 			"            from hykx_jxty.yzy_goods g " +
-			"            where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1  " +
+			"            where RPAD(YXQ,10,'-15') >sysdate() " +
 			"            and ((ISRETAIL = 0 and goods_number+1 > bz*2) or (ISRETAIL = 1 and goods_number+1 > bz/2) )  " +
 			"            and CONVERT(bz,DECIMAL) > CONVERT(zbz,DECIMAL) and shop_price > 0  " +
 			"            and NOT EXISTS (select * from hykx_jxty.lmsys_pzwh b where g.PZWH = b.pzwh) " +
