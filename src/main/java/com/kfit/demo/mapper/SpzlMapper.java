@@ -9,20 +9,22 @@ import java.util.List;
 
 public interface SpzlMapper {
 
-	@Select("select  '天尧仓' as suppliers_name,ypdm,cddm,jx,scrq,txm,goods_id_s,goods_sn," +
-			" goods_name as drug_common_name,cdmc as manufacturer,pzwh as approve_number,'' as recipe_type,'' as type_code," +
+	@Select("select  '天尧仓' as suppliers_name,g.ypdm,g.cddm,g.jx,g.scrq,g.txm,g.goods_id_s,g.goods_sn," +
+			" g.goods_name as drug_common_name,g.cdmc as manufacturer,g.pzwh as approve_number,'' as recipe_type,'' as type_code," +
 			"       '' as dosage_form,'' as appearance,'' as bases,'' as major_functions,'' as untoward_effect," +
-			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,REPLACE(REPLACE(goods_thumb,\"**\",\"/\"),\"good\",\"http://www.hyey.cn/uploadpic/600\") as drug_img," +
-			" gg as specifications,dw as package_unit,zbz as medium_package,bz as large_package," +
-			"       '' as usage_dosage,ISRETAIL as is_retail,ph as production_batch,yxq as date_expiration," +
-			"       goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,TRIM(txm) as bar_code," +
-			"       '' as unpack_view,'' as specification_view,dj,zk,truncate(dj*zk*(select markUp from hykx_jxty.lmsys where customNo = 'tyapp'),3) as supplier_price,goods_id_s as drugid" +
-			"            from hykx_jxty.yzy_goods g " +
-			"            where RPAD(YXQ,10,'-15') >sysdate()  and is_on_sale = 1  " +
-			"            and ((ISRETAIL = 0 and goods_number+1 > bz*2) or (ISRETAIL = 1 and goods_number+1 > bz/2) )  " +
-			"            and CONVERT(bz,DECIMAL) > CONVERT(zbz,DECIMAL) and shop_price > 0  " +
+			"       '' as taboo,'' as store,'' as warnings,'' as drug_interactions,'' as brand,REPLACE(REPLACE(g.goods_thumb,\"**\",\"/\"),\"good\",\"http://www.hyey.cn/uploadpic/600\") as drug_img," +
+			" g.gg as specifications,g.dw as package_unit,g.zbz as medium_package,g.bz as large_package," +
+			"       '' as usage_dosage,g.ISRETAIL as is_retail,g.ph as production_batch,g.yxq as date_expiration," +
+			"       g.goods_number as repertory, '' as supplier ,'' as left_view,'' as right_view,TRIM(g.txm) as bar_code," +
+			"       '' as unpack_view,'' as specification_view,g.dj,g.zk,truncate(g.dj*g.zk*(select markUp from hykx_jxty.lmsys where customNo = 'tyapp'),3) as supplier_price,g.goods_id_s as drugid" +
+			"            from hykx_jxty.yzy_goods g,hyey_goods_all a " +
+			"            where RPAD(g.YXQ,10,'-15') >sysdate() " +
+			"            and ((g.ISRETAIL = 0 and g.goods_number+1 > g.bz*2) or (g.ISRETAIL = 1 and g.goods_number+1 > g.bz/2) )  " +
+			"            and CONVERT(g.bz,DECIMAL) > CONVERT(g.zbz,DECIMAL) and g.shop_price > 0  " +
 			"            and NOT EXISTS (select * from hykx_jxty.lmsys_pzwh b where g.PZWH = b.pzwh) " +
-			"            and  locate('YSBTYC', goods_sn) and pzwh not like '%食%' and jx not like '%消毒%'")
+			"            and  locate('YSBTYC', g.goods_sn) and g.pzwh not like '%食%' and g.jx not like '%消毒%'" +
+			"            and g.goods_id_s = a.id " +
+			"            and date(a.updatedate) >= DATE_SUB(CURDATE(), INTERVAL 1 DAY)")
 	public List<Spbnew> getspbnew();
 
 	@Select("SELECT '泰衡医药' as suppliers_name,'' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
