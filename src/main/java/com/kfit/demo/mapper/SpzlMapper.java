@@ -57,10 +57,11 @@ public interface SpzlMapper {
 			"  and ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2))  " +
 			"  and goods_sn like 'HYYP%' and cast(bz as signed) > cast(zbz as signed)))  " +
 			"  and (shop_price > 0 and is_on_sale = 1 and is_delete = 0)  " +
-			"  and LENGTH(goods_id_s) = 36" )
+			"  and LENGTH(goods_id_s) = 36 " )
 	public List<MyGoodsEntity> getHYGoods();
 
-	@Select("select goods_sn,case when isnull(goods_id_s) then goods_sn else goods_id_s end as id,ISRETAIL as isretail,g.ypbh,goods_name as ypmc, cdmc,cdmc as drugowner,  " +
+	@Select("select goods_sn,case when isnull(goods_id_s) then goods_sn else goods_id_s end as id,ISRETAIL as isretail,g.ypbh,goods_name as ypmc, cdmc,cdmc as drugowner, " +
+			" gg,bz,zbz,ph,pch,yxq,goods_number as sl, market_price as lsj,  " +
 			" TRUNCATE(max(DJ)*ZK*1.06*(select markup from hykx.lmsys_seg b where g.dj > b.min and g.dj <= b.max and customNo = #{customNo}),2) as dj, " +
 			" dw,jx,0.13 as zzssl,pzwh,'' as ck,'' as ghdwlb,  " +
 			"  case when goods_sn like 'YYN%' or goods_sn like 'NYY%' then CONCAT('http://www.hbyyn.com/',goods_img) else goods_img end as imgurl,txm as tm,  " +
