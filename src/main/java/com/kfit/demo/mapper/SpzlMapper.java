@@ -43,6 +43,7 @@ public interface SpzlMapper {
 			" and ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
 			" and goods_sn like 'HYYP%' and cast(bz as signed) > cast(zbz as signed))" +
 			" and NOT EXISTS (select * from hykx_rd.lmsys_pzwh b where g.PZWH = b.pzwh)) " +
+			" and (jx like '%针%' or jx like '%注%') " +
 			" or (goods_sn like 'YYN%' or goods_sn like 'NYY%')) " +
 			" and (shop_price > 0 and is_on_sale = 1 and is_delete = 0)" )
 	public List<Spbnew> getspbnew();
