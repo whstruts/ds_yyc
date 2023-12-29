@@ -40,7 +40,6 @@ public interface SpzlMapper {
 			"TRUNCATE(DJ*ZK,2) as supplier_price,goods_id_s as drugid from yzy_goods g left JOIN yzy_suppliers s on " +
 			"g.suppliers_id = s.suppliers_id " +
 			" where (((RPAD(YXQ,10,'-15') >sysdate()    " +
-			" and ((ISRETAIL = 1 and goods_number+1 > bz/2) or (ISRETAIL = 0 and goods_number+1 > bz*2)) " +
 			" and goods_sn like 'HYYP%' and cast(bz as signed) > cast(zbz as signed))" +
 			" and NOT EXISTS (select * from hykx_rd.lmsys_pzwh b where g.PZWH = b.pzwh)) " +
 			" and (jx like '%针%' or jx like '%注%') " +
