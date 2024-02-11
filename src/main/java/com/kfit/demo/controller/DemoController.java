@@ -41,6 +41,11 @@ public class DemoController {
        return spzlService.saveOrder(orderDetail);
 	}
 
+	@RequestMapping("/saveOrderH5")
+	public String saveOrderH5(@RequestParam("orderDetail") @NotEmpty(message = "订单信息为空") String orderDetail) {
+		return spzlService.saveOrderH5(orderDetail);
+	}
+
 
 }
 

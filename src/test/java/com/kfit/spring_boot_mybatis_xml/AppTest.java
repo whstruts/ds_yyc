@@ -4,6 +4,8 @@ import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 
 /**
@@ -20,6 +22,7 @@ public class AppTest
     public AppTest( String testName )
     {
         super( testName );
+        getDate();
         int x = getOrderNo();
       //  ExportExcelUtils.batchSnycTestceshi();
     }
@@ -28,6 +31,14 @@ public class AppTest
     {
         Random random = new Random();
         return random.nextInt(500000000) + 400000000;
+    }
+
+    private void getDate()
+    {
+        Date currentTime = new Date(); // 获取当前时间
+        SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd"); // 定义日期格式
+        SimpleDateFormat t = new SimpleDateFormat("hh:mm:ss"); // 定义日期格式
+        String formattedDateTime = t.format(currentTime);
     }
 
     /**
@@ -43,6 +54,7 @@ public class AppTest
      */
     public void testApp()
     {
-        assertTrue( true );
+        //assertTrue( true );
+        getDate();
     }
 }
