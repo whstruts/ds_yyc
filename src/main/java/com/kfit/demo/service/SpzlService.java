@@ -71,7 +71,7 @@ public class SpzlService {
 		int index = 1;
 		for (OrderDetail orderDetail:orderDetails.getData()) {
 			DDMX ddmx = new DDMX();
-			ddmx.setAPP_DD_ID(orderDetails.getOrder_id());
+			ddmx.setAPP_DD_ID(orderDetails.getOrder_code());
 			ddmx.setERP_SP_DJ(Double.parseDouble(orderDetail.getDj()));
 			ddmx.setERP_SP_SL(Integer.parseInt(orderDetail.getSL()));
 			ddmx.setERP_SP_ID(orderDetail.getGoods_id_s());
@@ -86,11 +86,11 @@ public class SpzlService {
 		SimpleDateFormat t = new SimpleDateFormat("hh:mm:ss"); // 定义日期格式
 		ddhz.setRq(d.format(currentTime));
 		ddhz.setOntime(t.format(currentTime));
-		ddhz.setAPP_DD_ID(orderDetails.getOrder_id());
+		ddhz.setAPP_DD_ID(orderDetails.getOrder_code());
 		//ddhz.setCreate_Time(new Date());
 		ddhz.setERP_Custom_ID(orderDetails.getErpCustomerID());
 		ddhz.setDD_HJ(hj);
-		ddhz.setDjbh(String.valueOf(getOrderNo()));
+		ddhz.setDjbh(orderDetails.getOrder_id());
 		intsertHZH5(ddhz);
 		return "订单保存成功:总金额 " + String.valueOf(hj) + " 元";
 	}

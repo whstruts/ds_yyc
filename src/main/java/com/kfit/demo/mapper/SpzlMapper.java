@@ -65,7 +65,7 @@ public interface SpzlMapper {
 	@Insert("insert into hykx_rd.jk_xsdd(APP_DD_ID,MX_ID,ERP_SP_ID,ERP_SP_DJ,ERP_SP_SL) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_DJ},#{ERP_SP_SL})")
 	void insertMX(DDMX ddmx);
 
-	@Insert("insert into hykx_rd.xyy_seller_order_info(order_no,total_amount,is_hy_run,rq,ontime) values(#{APP_DD_ID},#{DD_HJ},0,#{rq},#{ontime})")
+	@Insert("insert into hykx_rd.xyy_seller_order_info(order_id,order_no,total_amount,is_hy_run,rq,ontime) values(#{djbh},#{APP_DD_ID},#{DD_HJ},0,#{rq},#{ontime})")
 	void insertHZH5(DDHZH5 ddhz);
 
 	@Insert("insert into hykx_rd.xyy_seller_order_detail(order_no,order_detail_id,HY_ID,sku_price,sku_purchase_price,purchase_num) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_DJ},#{ERP_SP_DJ},#{ERP_SP_SL})")
