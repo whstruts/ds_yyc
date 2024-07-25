@@ -20,7 +20,7 @@ public class SpzlService {
 
 	public List<Spbnew> getspbnew() {
 		List<Spbnew> list = spzlMappper.getspbnew();
-		list.addAll(spzlMappper.getspbnewst());
+//		list.addAll(spzlMappper.getspbnewst());
 //		List<Spbnew> list = spzlMappper.getspbnewst();
 		return list;
 	}
