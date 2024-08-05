@@ -45,13 +45,14 @@ public interface SpzlMapper {
 			"            and ((is_retail = 0 and store_num+1 > pack*2) or (is_retail = 1 and store_num+1 > pack/2) )  " +
 			"            and CONVERT(pack,DECIMAL) > CONVERT(middle_package,DECIMAL) and price > 0  " +
 			"            and NOT EXISTS (select * from hykx_hbyzt.lmsys_pzwh b where g.approve_no = b.pzwh) " +
-			"            and approve_no not like '%食%' and spec not like '%消毒%' and goods_id_s = #{id}")
+			"            and approve_no not like '%食%' and spec not like '%消毒%' and store_id = #{id}")
 	public Spbnew getspbnewById(String id);
 
-	@Select("SELECT '泰衡医药' as suppliers_name,'' as YPDM,'' as JX, prodDate as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
+	@Select("SELECT '济万佳仓' as suppliers_name,'' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
 			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
-			" '1' as is_retail,batchNum as production_batch,validity as date_expiration,stock as repertory,price as supplier_price,inCode as drugid " +
-			" FROM hykx_hbyzt.thgoods where price > 0 and inCode = #{id} ")
+			" '1' as is_retail,GROUP_CONCAT(batchNum) as production_batch,min(validity) as date_expiration,sum(stock) as repertory,price as supplier_price,drugCode as drugid  " +
+			" FROM hykx_hbyzt.yztgoods where price > 0  and stock >0 " +
+			" group by drugCode where price > 0 and drugCode = #{id} ")
 	public Spbnew getspbnewstById(String id);
 
 	@Select("select custid as code,trim(custname) as name,contactphone as telephone,contactperson as linkman,address,taxno as taxnumber " +
