@@ -25,7 +25,14 @@ public interface SpzlMapper {
 			"            and approve_no not like '%食%' and spec not like '%消毒%'")
 	public List<Spbnew> getspbnew();
 
-	@Select("SELECT '济万佳仓' as suppliers_name,'' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
+	@Select("SELECT  case ownerName" +
+			" when '市场一部' then '集团仓'" +
+			" when '市场二部' then '健康驿站'" +
+			" when '市场五部' then '华顺仓'" +
+			" when '健康管家' then '市场三部'" +
+			" else '济万佳仓'" +
+			" end as suppliers_name," +
+			" '' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
 			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
 			" '1' as is_retail,GROUP_CONCAT(batchNum) as production_batch,min(validity) as date_expiration,sum(stock) as repertory,price as supplier_price,drugCode as drugid " +
 			" FROM hykx_hbyzt.yztgoods where price > 0  and stock >0 " +
@@ -48,7 +55,14 @@ public interface SpzlMapper {
 			"            and approve_no not like '%食%' and spec not like '%消毒%' and store_id = #{id}")
 	public Spbnew getspbnewById(String id);
 
-	@Select("SELECT '济万佳仓' as suppliers_name,'' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
+	@Select("SELECT  case ownerName" +
+			" when '市场一部' then '集团仓'" +
+			" when '市场二部' then '健康驿站'" +
+			" when '市场五部' then '华顺仓'" +
+			" when '健康管家' then '市场三部'" +
+			" else '济万佳仓'" +
+			" end as suppliers_name," +
+			"'' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
 			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
 			" '1' as is_retail,GROUP_CONCAT(batchNum) as production_batch,min(validity) as date_expiration,sum(stock) as repertory,price as supplier_price,drugCode as drugid  " +
 			" FROM hykx_hbyzt.yztgoods where price > 0  and stock >0 and drugCode = #{id}" +
