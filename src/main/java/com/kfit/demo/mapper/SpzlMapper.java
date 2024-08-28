@@ -26,10 +26,10 @@ public interface SpzlMapper {
 	public List<Spbnew> getspbnew();
 
 	@Select("SELECT  case ownerName" +
-			" when '市场一部' then '集团仓'" +
-			" when '市场二部' then '健康驿站'" +
-			" when '市场五部' then '华顺仓'" +
-			" when '健康管家' then '市场三部'" +
+			" when '市场一部' then '市场一部'" +
+			" when '市场二部' then '市场二部'" +
+			" when '市场五部' then '市场五部'" +
+			" when '市场三部' then '市场三部'" +
 			" else '济万佳仓'" +
 			" end as suppliers_name," +
 			" '' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
@@ -56,10 +56,10 @@ public interface SpzlMapper {
 	public Spbnew getspbnewById(String id);
 
 	@Select("SELECT  case ownerName" +
-			" when '市场一部' then '集团仓'" +
-			" when '市场二部' then '健康驿站'" +
-			" when '市场五部' then '华顺仓'" +
-			" when '健康管家' then '市场三部'" +
+			" when '市场一部' then '市场一部'" +
+			" when '市场二部' then '市场二部'" +
+			" when '市场五部' then '市场五部'" +
+			" when '市场三部' then '市场三部'" +
 			" else '济万佳仓'" +
 			" end as suppliers_name," +
 			"'' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
