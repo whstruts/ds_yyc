@@ -95,6 +95,37 @@ public class SpzlService {
 		return "订单保存成功:总金额 " + String.valueOf(hj) + " 元";
 	}
 
+	@Transactional(rollbackFor = Exception.class)
+	public void saveOrderYSB(String order){
+		OrderDetails orderDetails = JSONObject.parseObject(order,OrderDetails.class);
+		double hj = 0;
+		int index = 1;
+		for (OrderDetail orderDetail:orderDetails.getData()) {
+			DDMX ddmx = new DDMX();
+			ddmx.setAPP_DD_ID(orderDetails.getOrder_code());
+			ddmx.setERP_SP_DJ(Double.parseDouble(orderDetail.getDj()));
+			ddmx.setERP_SP_SL(Integer.parseInt(orderDetail.getSL()));
+			ddmx.setERP_SP_ID(orderDetail.getGoods_id_s());
+			ddmx.setMX_ID(String.valueOf(index));
+			intsertMXYSB(ddmx);
+			hj = hj+ddmx.getERP_SP_DJ()*ddmx.getERP_SP_SL();
+			index++;
+		}
+		DDHZH5 ddhz = new DDHZH5();
+		Date currentTime = new Date(); // 获取当前时间
+		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd"); // 定义日期格式
+		SimpleDateFormat t = new SimpleDateFormat("hh:mm:ss"); // 定义日期格式
+		ddhz.setRq(d.format(currentTime));
+		ddhz.setOntime(t.format(currentTime));
+		ddhz.setAPP_DD_ID(orderDetails.getOrder_code());
+		//ddhz.setCreate_Time(new Date());
+		ddhz.setERP_Custom_ID(orderDetails.getErpCustomerID());
+		ddhz.setDD_HJ(hj);
+		ddhz.setDjbh(orderDetails.getOrder_id());
+		intsertHZYSB(ddhz);
+		//return "订单保存成功:总金额 " + String.valueOf(hj) + " 元";
+	}
+
 	private int getOrderNo()
 	{
 		Random random = new Random();
@@ -113,5 +144,11 @@ public class SpzlService {
 	}
 	public void intsertMXH5(DDMX ddmx){
 		spzlMappper.insertMXH5(ddmx);
+	}
+	public void intsertHZYSB(DDHZH5 ddhz){
+		spzlMappper.insertHZYSB(ddhz);
+	}
+	public void intsertMXYSB(DDMX ddmx){
+		spzlMappper.insertMXYSB(ddmx);
 	}
 }
