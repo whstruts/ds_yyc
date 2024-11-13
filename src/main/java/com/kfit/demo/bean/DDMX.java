@@ -9,4 +9,5 @@ public class DDMX {
     String ERP_SP_ID;
     double ERP_SP_DJ;
     int ERP_SP_SL;
+    String ERP_SP_CODE;
 }

@@ -103,32 +103,32 @@ public class SpzlService {
 		int index = 1;
 		for (OrderDetail orderDetail:orderDetails.getData()) {
 			DDMX ddmx = new DDMX();
+			ddmx.setAPP_DD_ID(orderDetails.getOrder_id());
+			ddmx.setERP_SP_DJ(Double.parseDouble(orderDetail.getDj()));
+			ddmx.setERP_SP_SL(Integer.parseInt(orderDetail.getSL()));
+			ddmx.setERP_SP_ID(orderDetail.getGoods_id_s());
 			if(orderDetail.getGoods_id_s().length()>30) {
-				ddmx.setAPP_DD_ID(orderDetails.getOrder_id());
-				ddmx.setERP_SP_DJ(Double.parseDouble(orderDetail.getDj()));
-				ddmx.setERP_SP_SL(Integer.parseInt(orderDetail.getSL()));
-				ddmx.setERP_SP_ID(orderDetail.getGoods_id_s());
-				ddmx.setMX_ID(String.valueOf(index));
-				intsertMXYSB(ddmx);
-				hj = hj + ddmx.getERP_SP_DJ() * ddmx.getERP_SP_SL();
-				index++;
+				ddmx.setERP_SP_CODE(spzlMappper.getDrugCodeById(orderDetail.getGoods_id_s()));
+			}else
+			{
+				ddmx.setERP_SP_CODE(orderDetail.getGoods_id_s());
 			}
+			ddmx.setMX_ID(String.valueOf(index));
+			intsertMXYSB(ddmx);
+			hj = hj + ddmx.getERP_SP_DJ() * ddmx.getERP_SP_SL();
+			index++;
 		}
-		if(hj>0) {
-			DDHZH5 ddhz = new DDHZH5();
-			Date currentTime = new Date(); // 获取当前时间
-			SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd"); // 定义日期格式
-			SimpleDateFormat t = new SimpleDateFormat("hh:mm:ss"); // 定义日期格式
-			ddhz.setRq(d.format(currentTime));
-			ddhz.setOntime(t.format(currentTime));
-			ddhz.setAPP_DD_ID(orderDetails.getOrder_id());
-			//ddhz.setCreate_Time(new Date());
-			ddhz.setERP_Custom_ID(orderDetails.getErpCustomerID());
-			ddhz.setDD_HJ(hj);
-			ddhz.setDjbh(orderDetails.getOrder_id());
-			intsertHZYSB(ddhz);
-		}
-		//return "订单保存成功:总金额 " + String.valueOf(hj) + " 元";
+		DDHZH5 ddhz = new DDHZH5();
+		Date currentTime = new Date(); // 获取当前时间
+		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd"); // 定义日期格式
+		SimpleDateFormat t = new SimpleDateFormat("hh:mm:ss"); // 定义日期格式
+		ddhz.setRq(d.format(currentTime));
+		ddhz.setOntime(t.format(currentTime));
+		ddhz.setAPP_DD_ID(orderDetails.getOrder_id());
+		ddhz.setERP_Custom_ID(orderDetails.getErpCustomerID());
+		ddhz.setDD_HJ(hj);
+		ddhz.setDjbh(orderDetails.getOrder_id());
+		intsertHZYSB(ddhz);
 	}
 
 	private int getOrderNo()

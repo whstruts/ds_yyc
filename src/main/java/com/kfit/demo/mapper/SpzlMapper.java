@@ -86,13 +86,17 @@ public interface SpzlMapper {
 	@Insert("insert into hykx_hbyzt.xyy_seller_order_detail(order_no,order_detail_id,HY_ID,sku_price,sku_purchase_price,purchase_num) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_DJ},#{ERP_SP_DJ},#{ERP_SP_SL})")
 	void insertMXH5(DDMX ddmx);
 
-	@Insert("insert into hykx_hbyzt.ysb_ddhz_hy(djbh,rq,ontime,customerid,je) values(#{APP_DD_ID},#{rq},#{ontime},#{ERP_Custom_ID},#{DD_HJ})")
+	@Insert("insert into hykx_hbyzt.ysb_ddhz(djbh,rq,ontime,customerid,je) values(#{APP_DD_ID},#{rq},#{ontime},#{ERP_Custom_ID},#{DD_HJ})")
 	void insertHZYSB(DDHZH5 ddhz);
 
-	@Insert("insert into hykx_hbyzt.ysb_ddmx_hy(djbh,dj_sn,drugcode,hy_id,shl,dj,je) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_ID},#{ERP_SP_ID},#{ERP_SP_SL},#{ERP_SP_DJ},#{ERP_SP_DJ}*#{ERP_SP_SL})")
+	@Insert("insert into hykx_hbyzt.ysb_ddmx(djbh,dj_sn,drugcode,hy_id,shl,dj,je) values(#{APP_DD_ID},#{MX_ID},#{ERP_SP_CODE},#{ERP_SP_ID},#{ERP_SP_SL},#{ERP_SP_DJ},#{ERP_SP_DJ}*#{ERP_SP_SL})")
 	void insertMXYSB(DDMX ddmx);
 
 	@Update("update jk_xsddhead set IS_PAY = 1 where APP_DD_ID = #{id}")
 	public void UpdateOrderStatusByID(String id);
+
+	@Select("select case is_retail when 1 then concat('LMPPC',drug_num) " +
+			"else concat('LMPPZ',drug_num) end as drug_code  from drug_inventory_item where store_id = #{id}")
+	public String getDrugCodeById(String id);
 
 }
