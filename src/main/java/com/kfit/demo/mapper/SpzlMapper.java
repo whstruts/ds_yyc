@@ -99,4 +99,13 @@ public interface SpzlMapper {
 			"else concat('LMPPZ',drug_num) end as drug_code  from drug_inventory_item where store_id = #{id}")
 	public String getDrugCodeById(String id);
 
+	@Insert("insert into ysb_ddhz_hy(djbh,rq,ontime,je,is_run,customerId) " +
+			"select djbh,rq,ontime,je,is_run,customerId from ysb_ddhz where djbh = #{orderId}")
+	void insertYSBHZ(String orderId);
+
+	@Insert("insert into ysb_ddmx_hy(djbh,dj_sn,drugCode,shl,dj,je,cgdj,cgje,hy_id) " +
+			"select djbh,dj_sn,drugCode,shl,dj,je,cgdj,cgje,hy_id from ysb_ddmx where djbh = #{orderId}")
+	void insertYSBMX(String orderId);
+
+
 }

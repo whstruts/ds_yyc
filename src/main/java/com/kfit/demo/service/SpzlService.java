@@ -156,4 +156,12 @@ public class SpzlService {
 	public void intsertMXYSB(DDMX ddmx){
 		spzlMappper.insertMXYSB(ddmx);
 	}
+	@Transactional(rollbackFor = Exception.class)
+	public int updateThirdOrder(String orderId,int status) {
+		if (status == 3) {
+			spzlMappper.insertYSBHZ(orderId);
+			spzlMappper.insertYSBMX(orderId);
+		}
+		return 0;
+	}
 }

@@ -47,6 +47,11 @@ public class DemoController {
 		return spzlService.saveOrderH5(orderDetail);
 	}
 
+	@RequestMapping(value ="/updateOrder", method = RequestMethod.GET)
+	public int updateOrder(@RequestParam String orderId,@RequestParam int status) {
+		return spzlService.updateThirdOrder(orderId,status);
+	}
+
 
 }
 
