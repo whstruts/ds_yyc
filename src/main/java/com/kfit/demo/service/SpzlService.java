@@ -83,7 +83,7 @@ public class SpzlService {
 		DDHZH5 ddhz = new DDHZH5();
 		Date currentTime = new Date(); // 获取当前时间
 		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd"); // 定义日期格式
-		SimpleDateFormat t = new SimpleDateFormat("hh:mm:ss"); // 定义日期格式
+		SimpleDateFormat t = new SimpleDateFormat("HH:mm:ss"); // 定义日期格式
 		ddhz.setRq(d.format(currentTime));
 		ddhz.setOntime(t.format(currentTime));
 		ddhz.setAPP_DD_ID(orderDetails.getOrder_code());
@@ -121,7 +121,7 @@ public class SpzlService {
 		DDHZH5 ddhz = new DDHZH5();
 		Date currentTime = new Date(); // 获取当前时间
 		SimpleDateFormat d = new SimpleDateFormat("yyyy-MM-dd"); // 定义日期格式
-		SimpleDateFormat t = new SimpleDateFormat("hh:mm:ss"); // 定义日期格式
+		SimpleDateFormat t = new SimpleDateFormat("HH:mm:ss"); // 定义日期格式
 		ddhz.setRq(d.format(currentTime));
 		ddhz.setOntime(t.format(currentTime));
 		ddhz.setAPP_DD_ID(orderDetails.getOrder_id());
