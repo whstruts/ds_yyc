@@ -22,7 +22,9 @@ public interface SpzlMapper {
 			"            and ((is_retail = 0 and store_num+1 > pack*2) or (is_retail = 1 and store_num+1 > pack/2) )  " +
 			"            and CONVERT(pack,DECIMAL) > CONVERT(middle_package,DECIMAL) and price > 0  " +
 			"            and NOT EXISTS (select * from hykx_hbyzt.lmsys_pzwh b where g.approve_no = b.pzwh) " +
-			"            and approve_no not like '%食%' and spec not like '%消毒%'")
+			"            and approve_no not like '%食%' and spec not like '%消毒%'" +
+			"            and DATE(update_date)=CURDATE() " +
+			"            and is_retail = 1 ")
 	public List<Spbnew> getspbnew();
 
 	@Select("SELECT  case ownerName" +
