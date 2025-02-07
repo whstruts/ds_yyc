@@ -38,6 +38,7 @@ public interface SpzlMapper {
 			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
 			" '1' as is_retail,GROUP_CONCAT(batchNum) as production_batch,min(validity) as date_expiration,sum(stock) as repertory,price as supplier_price,drugCode as drugid " +
 			" FROM hykx_hbyzt.yztgoods where price > 0  and stock >0 " +
+			" and ownerName not in ('市场六部','市场八部')" +
 			" group by drugCode")
 	public List<Spbnew> getspbnewst();
 
