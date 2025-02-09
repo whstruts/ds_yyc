@@ -27,19 +27,74 @@ public interface SpzlMapper {
 			"            and is_retail = 1 ")
 	public List<Spbnew> getspbnew();
 
-	@Select("SELECT  case ownerName" +
-			" when '市场一部' then '市场一部'" +
-			" when '市场二部' then '市场二部'" +
-			" when '市场五部' then '市场五部'" +
-			" when '市场三部' then '市场三部'" +
-			" else '济万佳仓'" +
-			" end as suppliers_name," +
-			" '' as YPDM,'' as JX, min(prodDate) as scrq,barcode as txm, drugCode as goods_id_s,drugCode as goods_sn, " +
-			" drugName as drug_common_name,factory as manufacturer,approval as approve_number,pack as specifications,unit as package_unit,midPack as medium_package,wholePack as large_package, " +
-			" '1' as is_retail,GROUP_CONCAT(batchNum) as production_batch,min(validity) as date_expiration,sum(stock) as repertory,price as supplier_price,drugCode as drugid " +
-			" FROM hykx_hbyzt.yztgoods where price > 0  and stock >0 " +
-			" and ownerName not in ('市场六部','市场八部')" +
-			" group by drugCode")
+	@Select("WITH lmsys_markup AS (" +
+			"    SELECT markUp FROM hykx_hbyzt.lmsys WHERE customNo = 'yztapp'" +
+			")" +
+			"SELECT * FROM (" +
+			"    SELECT  " +
+			"        CASE ownerName" +
+			"            WHEN '市场一部' THEN '市场一部'" +
+			"            WHEN '市场二部' THEN '市场二部'" +
+			"            WHEN '市场五部' THEN '市场五部'" +
+			"            WHEN '市场三部' THEN '市场三部'" +
+			"            ELSE '济万佳仓'" +
+			"        END AS suppliers_name," +
+			"        '' AS YPDM," +
+			"        '' AS JX," +
+			"        MIN(prodDate) AS scrq," +
+			"        barcode AS txm," +
+			"        drugCode AS goods_id_s," +
+			"        drugCode AS goods_sn," +
+			"        drugName AS drug_common_name," +
+			"        factory AS manufacturer," +
+			"        approval AS approve_number," +
+			"        pack AS specifications," +
+			"        unit AS package_unit," +
+			"        midPack AS medium_package," +
+			"        wholePack AS large_package," +
+			"        '1' AS is_retail," +
+			"        GROUP_CONCAT(batchNum) AS production_batch," +
+			"        MIN(validity) AS date_expiration," +
+			"        SUM(stock) AS repertory," +
+			"        price AS supplier_price," +
+			"        drugCode AS drugid " +
+			"    FROM hykx_hbyzt.yztgoods " +
+			"    WHERE price > 0 AND stock > 0 AND ownerName NOT IN ('市场六部', '市场八部')" +
+			"    GROUP BY drugCode" +
+			"    UNION" +
+			"    SELECT  " +
+			"        '源臻堂仓' AS suppliers_name," +
+			"        drug_code AS YPDM," +
+			"        drug_type AS JX," +
+			"        prod_date2 AS scrq," +
+			"        drug_bar_code AS txm," +
+			"        store_id AS goods_id_s," +
+			"        store_id AS goods_sn," +
+			"        drug_name AS drug_common_name," +
+			"        drug_owner AS manufacturer," +
+			"        approve_no AS approve_number," +
+			"        spec AS specifications," +
+			"        unit AS package_unit," +
+			"        middle_package AS medium_package," +
+			"        pack AS large_package," +
+			"        is_retail," +
+			"        batch_num AS production_batch," +
+			"        due_date2 AS date_expiration," +
+			"        store_num AS repertory," +
+			"        TRUNCATE(price * (SELECT markUp FROM lmsys_markup), 3) AS supplier_price," +
+			"        store_id AS drugid" +
+			"    FROM hykx_hbyzt.drug_inventory_item g" +
+			"    WHERE " +
+			"        RPAD(due_date2, 10, '-15') > SYSDATE()  " +
+			"        AND ((is_retail = 0 AND store_num + 1 > pack * 2) OR (is_retail = 1 AND store_num + 1 > pack / 2))  " +
+			"        AND CONVERT(pack, DECIMAL) > CONVERT(middle_package, DECIMAL) " +
+			"        AND price > 0  " +
+			"        AND NOT EXISTS (SELECT * FROM hykx_hbyzt.lmsys_pzwh b WHERE g.approve_no = b.pzwh) " +
+			"        AND approve_no NOT LIKE '%食%' " +
+			"        AND spec NOT LIKE '%消毒%'" +
+			"        AND update_date >= CURDATE() AND update_date < CURDATE() + INTERVAL 1 DAY" +
+			"        AND is_retail = 1" +
+			") combined_query")
 	public List<Spbnew> getspbnewst();
 
 	@Select("select  '源臻堂仓' as suppliers_name,drug_code as ypdm,factory_code as cddm,drug_type as jx, prod_date2 as scrq,drug_bar_code as txm,store_id as goods_id_s,store_id as goods_sn, " +
