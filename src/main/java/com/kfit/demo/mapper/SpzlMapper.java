@@ -92,7 +92,7 @@ public interface SpzlMapper {
 			"        AND NOT EXISTS (SELECT * FROM hykx_hbyzt.lmsys_pzwh b WHERE g.approve_no = b.pzwh) " +
 			"        AND approve_no NOT LIKE '%食%' " +
 			"        AND spec NOT LIKE '%消毒%'" +
-			"        AND update_date >= CURDATE() AND update_date < CURDATE() + INTERVAL 1 DAY" +
+            "        AND update_date >= NOW() - INTERVAL 24 HOUR"+
 			"        AND is_retail = 1" +
 			") combined_query")
 	public List<Spbnew> getspbnewst();
