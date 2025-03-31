@@ -59,7 +59,7 @@ public interface SpzlMapper {
 			"        price AS supplier_price," +
 			"        drugCode AS drugid " +
 			"    FROM hykx_hbyzt.yztgoods " +
-			"    WHERE price > 0 AND stock > 0 AND ownerName NOT IN ('药品六部', '药品八部')" +
+			"    WHERE price > 0 AND stock > 0 AND ownerName NOT IN ('药品六部', '药品八部', '药品一部', '中药饮片一部', ', '器械八部'')" +
 			"    GROUP BY drugCode" +
 			"    UNION" +
 			"    SELECT  " +
