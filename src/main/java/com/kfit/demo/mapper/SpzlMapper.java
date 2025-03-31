@@ -37,7 +37,11 @@ public interface SpzlMapper {
 			"            WHEN '市场二部' THEN '市场二部'" +
 			"            WHEN '市场五部' THEN '市场五部'" +
 			"            WHEN '市场三部' THEN '市场三部'" +
-			"            ELSE '济万佳仓'" +
+			"            WHEN '默认货主' THEN '济万佳仓'" +
+			"            WHEN '药品一部' THEN '济万佳仓'" +
+			"            WHEN '中药饮片一部' THEN '济万佳仓'" +
+			"            WHEN '器械八部' THEN '济万佳仓'" +
+			"            ELSE '其它'" +
 			"        END AS suppliers_name," +
 			"        '' AS YPDM," +
 			"        '' AS JX," +
@@ -59,7 +63,7 @@ public interface SpzlMapper {
 			"        price AS supplier_price," +
 			"        drugCode AS drugid " +
 			"    FROM hykx_hbyzt.yztgoods " +
-			"    WHERE price > 0 AND stock > 0 AND ownerName NOT IN ('药品六部', '药品八部', '药品一部', '中药饮片一部', ', '器械八部'')" +
+			"    WHERE price > 0 AND stock > 0 " +
 			"    GROUP BY drugCode" +
 			"    UNION" +
 			"    SELECT  " +
