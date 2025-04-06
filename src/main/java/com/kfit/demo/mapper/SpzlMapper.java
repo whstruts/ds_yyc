@@ -61,7 +61,7 @@ public interface SpzlMapper {
 			"        MIN(validity) AS date_expiration," +
 			"        SUM(stock) AS repertory," +
 			"        price AS supplier_price," +
-			"        drugCode AS drugid " +
+			"        drugCode AS drugid,'' as drug_img " +
 			"    FROM hykx_hbyzt.yztgoods " +
 			"    WHERE price > 0 AND stock > 0 " +
 			"    GROUP BY drugCode" +
@@ -86,7 +86,7 @@ public interface SpzlMapper {
 			"        due_date2 AS date_expiration," +
 			"        store_num AS repertory," +
 			"        TRUNCATE(price * (SELECT markUp FROM lmsys_markup), 3) AS supplier_price," +
-			"        store_id AS drugid" +
+			"        store_id AS drugid,main_url as drug_img" +
 			"    FROM hykx_hbyzt.drug_inventory_item g" +
 			"    WHERE " +
 			"        RPAD(due_date2, 10, '-15') > SYSDATE()  " +
