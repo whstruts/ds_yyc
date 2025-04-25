@@ -130,6 +130,8 @@ public class SpzlService {
 		ddhz.setDD_HJ(hj);
 		ddhz.setDjbh(orderDetails.getOrder_id());
 		intsertHZYSB(ddhz);
+		spzlMappper.insertYSBMX(orderDetails.getOrder_id());
+		spzlMappper.insertYSBHZ(orderDetails.getOrder_id());
 	}
 
 	private int getOrderNo()
@@ -159,10 +161,10 @@ public class SpzlService {
 	}
 	@Transactional(rollbackFor = Exception.class)
 	public int updateThirdOrder(String orderId,int status) {
-		if (status == 3) {
-			spzlMappper.insertYSBHZ(orderId);
-			spzlMappper.insertYSBMX(orderId);
-		}
+//		if (status == 3) {
+//			spzlMappper.insertYSBHZ(orderId);
+//			spzlMappper.insertYSBMX(orderId);
+//		}
 		return 0;
 	}
 }
