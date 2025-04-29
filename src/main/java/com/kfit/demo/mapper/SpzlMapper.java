@@ -157,8 +157,11 @@ public interface SpzlMapper {
 	@Update("update jk_xsddhead set IS_PAY = 1 where APP_DD_ID = #{id}")
 	public void UpdateOrderStatusByID(String id);
 
-	@Select("select case is_retail when 1 then concat('LMPPC',drug_num) " +
-			"else concat('LMPPZ',drug_num) end as drug_code  from drug_inventory_item where store_id = #{id}")
+//	@Select("select case is_retail when 1 then concat('LMPPC',drug_num) " +
+//			"else concat('LMPPZ',drug_num) end as drug_code  from drug_inventory_item where store_id = #{id}")
+//	public String getDrugCodeById(String id);
+
+	@Select("select goods_sn as drug_code  from yzy_goods where goods_id_s = #{id}")
 	public String getDrugCodeById(String id);
 
 	@Insert("insert into ysb_ddhz_hy(djbh,rq,ontime,je,is_run,customerId) " +
