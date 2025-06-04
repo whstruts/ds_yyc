@@ -37,6 +37,7 @@ public interface SpzlMapper {
 			"            WHEN '市场二部' THEN '市场二部'" +
 			"            WHEN '市场五部' THEN '市场五部'" +
 			"            WHEN '市场六部' THEN '市场六部'" +
+			"            WHEN '业务一部' THEN '业务一部'" +
 			"            WHEN '市场三部' THEN '市场三部'" +
 			"            WHEN '默认货主' THEN '济万佳仓'" +
 			"            WHEN '药品一部' THEN '济万佳仓'" +
@@ -123,6 +124,7 @@ public interface SpzlMapper {
 			" when '市场二部' then '市场二部'" +
 			" when '市场五部' then '市场五部'" +
 			" when '市场六部' then '市场六部'" +
+			" WHEN '业务一部' THEN '业务一部'" +
 			" when '市场三部' then '市场三部'" +
 			" else '济万佳仓'" +
 			" end as suppliers_name," +
