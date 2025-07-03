@@ -35,7 +35,6 @@ public interface SpzlMapper {
 			"        CASE ownerName" +
 			"            WHEN '市场一部' THEN '市场一部'" +
 			"            WHEN '市场二部' THEN '市场二部'" +
-			"            WHEN '市场五部' THEN '市场五部'" +
 			"            WHEN '市场六部' THEN '市场六部'" +
 			"            WHEN '业务一部' THEN '业务一部'" +
 			"            WHEN '市场三部' THEN '市场三部'" +
@@ -122,7 +121,6 @@ public interface SpzlMapper {
 	@Select("SELECT  case ownerName" +
 			" when '市场一部' then '市场一部'" +
 			" when '市场二部' then '市场二部'" +
-			" when '市场五部' then '市场五部'" +
 			" when '市场六部' then '市场六部'" +
 			" WHEN '业务一部' THEN '业务一部'" +
 			" when '市场三部' then '市场三部'" +
